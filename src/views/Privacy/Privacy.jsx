@@ -4,7 +4,7 @@ import { Box } from "components";
 import styled from "styled-components";
 import Main from "./Sections/Main";
 import { withRouter, Link } from "react-router-dom";
-import { NavBar } from "views/Home/Sections";
+import { NavBar, Footer } from "views/Home/Sections";
 const PrivacyWrapper = styled(Box)`
   position: relative;
 `;
@@ -17,6 +17,9 @@ class _PrivacyContent extends React.Component {
   toggleDrawer = () => {
     this.props.history.push("/");
   };
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <PrivacyWrapper>
@@ -27,6 +30,9 @@ class _PrivacyContent extends React.Component {
           toggleDrawer={this.toggleDrawer}
         />
         <Main />
+        <footer>
+          <Footer />
+        </footer>
       </PrivacyWrapper>
     );
   }

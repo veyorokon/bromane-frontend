@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, withRouter } from "react-router-dom";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
@@ -82,6 +82,19 @@ const Root = styled.div`
     "Helvetica Neue", sans-serif;
 `;
 
+class _ScrollToTop extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+const ScrollToTop = withRouter(_ScrollToTop);
+
 ReactDOM.render(
   <ApolloProvider client={client}>
     <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PK}>
@@ -90,7 +103,9 @@ ReactDOM.render(
           <Root>
             <Style />
             <Router history={hist}>
-              <Route path="/" component={Home} />
+              <ScrollToTop>
+                <Route path="/" component={Home} />
+              </ScrollToTop>
             </Router>
           </Root>
         </MuiThemeProvider>

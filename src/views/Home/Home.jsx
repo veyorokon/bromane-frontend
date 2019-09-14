@@ -42,6 +42,9 @@ class _HomeContent extends React.Component {
       isComplete: false
     };
   }
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
 
   toggleDrawer = event => {
     event.preventDefault();

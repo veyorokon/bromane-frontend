@@ -4,7 +4,8 @@ import { Box } from "components";
 import styled from "styled-components";
 import Main from "./Sections/Main";
 import { withRouter, Link } from "react-router-dom";
-import { NavBar } from "views/Home/Sections";
+import { NavBar, Footer } from "views/Home/Sections";
+
 const TermsWrapper = styled(Box)`
   position: relative;
 `;
@@ -13,6 +14,9 @@ class _TermsContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
   }
   toggleDrawer = () => {
     this.props.history.push("/");
@@ -27,6 +31,9 @@ class _TermsContent extends React.Component {
           toggleDrawer={this.toggleDrawer}
         />
         <Main />
+        <footer>
+          <Footer />
+        </footer>
       </TermsWrapper>
     );
   }

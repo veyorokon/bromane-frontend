@@ -26,6 +26,9 @@ class Footer extends React.Component {
             <S.FooterCol width="25%">
               <S.FooterHeader>Links</S.FooterHeader>
               <S.FooterText textAlign="justify">
+                <StyledLink to="/">Home</StyledLink>
+              </S.FooterText>
+              <S.FooterText textAlign="justify">
                 <StyledLink to="/terms-of-service">Terms of service</StyledLink>
               </S.FooterText>
               <S.FooterText textAlign="justify">
