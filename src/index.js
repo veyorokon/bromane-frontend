@@ -14,9 +14,10 @@ import { ApolloProvider } from "react-apollo";
 import * as fonts from "assets/fonts";
 
 const hist = createBrowserHistory();
+const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 const client = new ApolloClient({
-  uri: "http://192.168.1.64:8000/api/graphql/"
+  uri: apiUrl
 });
 
 // core components
@@ -83,7 +84,7 @@ const Root = styled.div`
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <StripeProvider apiKey="pk_test_e9dOnmxcxduTukgPfhqBkZGc">
+    <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PK}>
       <ThemeProvider theme={theme}>
         <MuiThemeProvider theme={muiTheme}>
           <Root>

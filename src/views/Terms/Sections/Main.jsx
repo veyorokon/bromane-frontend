@@ -308,21 +308,6 @@ class Main extends React.Component {
           website are provided free of charge, we will not be liable for any
           loss or damage of any nature.{" "}
         </Text>{" "}
-        <SubTitle> </SubTitle> <Text pt="5px"> </Text>{" "}
-        <SubTitle> Credit & Contact Information </SubTitle>{" "}
-        <Text pt="5px">
-          {" "}
-          This Terms and conditions page was created at{" "}
-          <a
-            style={{ color: "inherit", textDecoration: "none", cursor: "text" }}
-            href="https://termsandconditionstemplate.com"
-          >
-            {" "}
-            termsandconditionstemplate.com{" "}
-          </a>{" "}
-          generator. If you have any queries regarding any of our terms, please
-          contact us.{" "}
-        </Text>{" "}
       </FlexColumn>
     );
   }

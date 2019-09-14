@@ -28,6 +28,9 @@ class Footer extends React.Component {
               <S.FooterText textAlign="justify">
                 <StyledLink to="/terms-of-service">Terms of service</StyledLink>
               </S.FooterText>
+              <S.FooterText textAlign="justify">
+                <StyledLink to="/privacy-policy">Privacy policy</StyledLink>
+              </S.FooterText>
             </S.FooterCol>
           </S.FooterRow>
           <S.FooterRow>
