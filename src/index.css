@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Porto';
+  src: local('Porto'), url(/assets/fonts/Porto/Porto.ttf) format('tff');
+}
+
+@font-face {
+  font-family: 'SofiaProRegular';
+  src: local('SofiaProRegular'), url(/assets/fonts/SofiaProRegular/SofiaProRegular.ttf) format('tff');
+}
