@@ -186,7 +186,7 @@ class Main extends React.Component {
             title="send an email to support@bromane.com"
           >
             {" "}
-            service @bromane.com{" "}
+            support@bromane.com{" "}
           </a>
           . Please include your name, your organization name, contact
           information(such as a phone number and / or e - mail address) as well
