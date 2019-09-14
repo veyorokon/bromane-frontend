@@ -182,8 +182,8 @@ class Main extends React.Component {
           interested in linking to our website, you must notify us by sending an
           e - mail to{" "}
           <a
-            href="mailto:service@bromane.com"
-            title="send an email to service@bromane.com"
+            href="mailto:support@bromane.com"
+            title="send an email to support@bromane.com"
           >
             {" "}
             service @bromane.com{" "}
