@@ -30,9 +30,7 @@ class NavBar extends React.Component {
         <S.NavItemsContainer color={color} width="100%">
           <S.NavFlex height="100%" width="33%" alignItems="center">
             <S.SVGWrapper width={["3rem", "4rem"]}>
-              <StyledLink to="/">
-                <BromaneLogo />
-              </StyledLink>
+              <BromaneLogo />
             </S.SVGWrapper>
           </S.NavFlex>
           <S.LogoWrapper height="100%" width="33%" alignItems="center">
