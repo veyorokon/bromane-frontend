@@ -5,7 +5,7 @@ import Solution from "./Solution";
 import Mission from "./Mission";
 import Footer from "./Footer";
 import Incentive from "./Incentive";
-import Checkout from "./Checkout";
+import CheckoutManager from "./CheckoutManager";
 import Products from "./Products";
 
 export {
@@ -16,6 +16,6 @@ export {
   Mission,
   Footer,
   Incentive,
-  Checkout,
+  CheckoutManager,
   Products
 };

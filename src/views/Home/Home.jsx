@@ -12,7 +12,7 @@ import {
   Mission,
   Footer,
   Problem,
-  Checkout,
+  CheckoutManager,
   Products
 } from "./Sections";
 import { Box, Drawer } from "components";
@@ -39,11 +39,9 @@ class _HomeContent extends React.Component {
       open: false,
       originalBodyOverflow: document.body.style.overflow,
       cart: {},
-      isComplete: false
+      isComplete: false,
+      isComingSoon: true
     };
-  }
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
   }
 
   toggleDrawer = event => {
@@ -108,6 +106,7 @@ class _HomeContent extends React.Component {
     let newCart = productCartItem;
     let newState = this.state;
     newState.cart = newCart;
+    newState.open = true;
     this.setState({ newState });
   };
 
@@ -126,8 +125,8 @@ class _HomeContent extends React.Component {
     const navBG = this.state.open
       ? ["nav.0", "nav.0", "nav.0", "nav.0", "nav.1"]
       : ["nav.0"]; // Change depending on Y
-    const cartCount = this.getExclusiveCartCount();
-    const { isComplete } = this.state;
+    const { isComplete, isComingSoon } = this.state;
+    const cartCount = isComingSoon ? 0 : this.getExclusiveCartCount();
     const isEmpty = !cartCount && !isComplete;
     const product = this.state.cart;
     return (
@@ -155,12 +154,12 @@ class _HomeContent extends React.Component {
             overflowY: "auto",
             minHeight: "calc(max-content)"
           }}
-          title="Cart"
+          title="Welcome"
           {...this.state}
           toggleDrawer={this.toggleDrawer}
           content={
-            <Checkout
-              isComingSoon
+            <CheckoutManager
+              isComingSoon={isComingSoon}
               onCheckoutComplete={this.handleComplete}
               product={product}
               isEmpty={isEmpty}

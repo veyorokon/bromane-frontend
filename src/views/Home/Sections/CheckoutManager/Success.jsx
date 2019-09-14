@@ -4,7 +4,7 @@ import * as S from "./styled";
 
 const SuccessIndicator = require("react-success-indicator");
 
-export default function CompleteOrder(props) {
+export default function Success(props) {
   return (
     <Panel {...props}>
       <S.CartSubTitle
@@ -12,14 +12,14 @@ export default function CompleteOrder(props) {
         margin="1rem auto 1rem auto"
         textAlign="center"
       >
-        Success!
+        {props.title}
       </S.CartSubTitle>
       <S.CartSubTitle
         margin="0 auto 3rem auto"
         fontSize="0.8em"
         textAlign="center"
       >
-        Your order has been placed
+        {props.subtitle}
       </S.CartSubTitle>
       <S.Row>
         <SuccessIndicator size="9.6rem" color="green" />
@@ -29,7 +29,7 @@ export default function CompleteOrder(props) {
         fontSize="1.2em"
         textAlign="center"
       >
-        We{"'"}ll send you an email once it has shipped.
+        {props.body}
       </S.CartSubTitle>
     </Panel>
   );

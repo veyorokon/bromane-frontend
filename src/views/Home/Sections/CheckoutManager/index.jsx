@@ -7,12 +7,16 @@ import Shipping from "./Shipping";
 import Account from "./Account";
 import Payment from "./Payment";
 import Confirmation from "./Confirmation";
-import CompleteOrder from "./CompleteOrder";
+import Success from "./Success";
+import EmptyCart from "./EmptyCart";
+import EmailSubscribe from "./EmailSubscribe";
+
 import {
   CREATE_ACCOUNT,
   UPDATE_USER,
   SET_STRIPE_CARD,
-  CONFIRM_ORDER
+  CONFIRM_ORDER,
+  CREATE_EMAIL_SUBSCRIBER
 } from "./graphql";
 
 import * as S from "./styled";
@@ -50,26 +54,6 @@ const FooterButton = ({ children }) => (
     {children}
   </S.DrawerButton>
 );
-
-const EmptyCart = () => {
-  return (
-    <Tabs overrideDefault selected={1}>
-      <Panel></Panel>
-      <Panel
-        title={
-          <S.CartSubTitle textAlign="center">
-            Hm... looks pretty empty bro
-          </S.CartSubTitle>
-        }
-      >
-        <S.EmptyCartImageWrapper
-          backgroundImage={`url(${emptyCart})`}
-        ></S.EmptyCartImageWrapper>
-      </Panel>
-      <Panel></Panel>
-    </Tabs>
-  );
-};
 
 const ComingSoonCart = () => {
   return (
@@ -136,7 +120,14 @@ class Checkout extends React.Component {
     if (isEmpty) {
       return <EmptyCart />;
     }
-    if (this.props.isComplete) return <CompleteOrder />;
+    if (this.props.isComplete)
+      return (
+        <Success
+          title={"Success!"}
+          subtitle={"Your order has been placed"}
+          body={"We'll send you an email once it has shipped."}
+        />
+      );
     const order = { planKey: product.id, quantity: 1, update: "create" };
     return (
       <Mutation mutation={CREATE_ACCOUNT}>
@@ -244,4 +235,65 @@ class Checkout extends React.Component {
   }
 }
 
-export default Checkout;
+class Subscribe extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      subscriber: { email: "" },
+      complete: false
+    };
+  }
+
+  handleStateChange(section, field, value) {
+    let newState = this.state;
+    newState[section][field] = value;
+    this.setState({ ...newState });
+  }
+
+  onSubmit = async (mutation, values) => {
+    await mutation({ variables: values });
+    this.setState({ complete: true });
+  };
+
+  render() {
+    const { subscriber, complete } = this.state;
+    if (complete)
+      return (
+        <Success
+          title={"Subscribed!"}
+          subtitle={"You're on our mailing list"}
+          body={"We'll send you an email once we launch!"}
+        />
+      );
+    return (
+      <Mutation mutation={CREATE_EMAIL_SUBSCRIBER}>
+        {createEmailSubscriber => (
+          <Tabs selected={1}>
+            <Panel></Panel>
+            <EmailSubscribe
+              overrideDefault
+              footerButton={<FooterButton>Subscribe</FooterButton>}
+              callback={async () => {
+                await this.onSubmit(createEmailSubscriber, subscriber);
+                setTimeout(() => {}, 600);
+              }}
+              stateChange={(field, value) =>
+                this.handleStateChange("subscriber", field, value)
+              }
+              {...this.props}
+            />
+            <Panel></Panel>
+          </Tabs>
+        )}
+      </Mutation>
+    );
+  }
+}
+
+const CheckoutManager = props => {
+  if (props.isComingSoon) return <Subscribe {...props} />;
+  return <Checkout {...props} />;
+};
+
+export default CheckoutManager;

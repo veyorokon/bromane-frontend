@@ -96,4 +96,21 @@ const CONFIRM_ORDER = gql`
   }
 `;
 
-export { CREATE_ACCOUNT, USER, UPDATE_USER, SET_STRIPE_CARD, CONFIRM_ORDER };
+const CREATE_EMAIL_SUBSCRIBER = gql`
+  mutation createEmailSubscriber($email: String!) {
+    CreateEmailSubscriber(email: $email) {
+      emailSubscriber {
+        id
+      }
+    }
+  }
+`;
+
+export {
+  CREATE_ACCOUNT,
+  USER,
+  UPDATE_USER,
+  SET_STRIPE_CARD,
+  CONFIRM_ORDER,
+  CREATE_EMAIL_SUBSCRIBER
+};
