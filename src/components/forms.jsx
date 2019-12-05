@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import createReactClass from "create-react-class";
 
 const TabBody = styled.div`
   padding: 1rem;

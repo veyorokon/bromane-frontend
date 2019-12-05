@@ -18,7 +18,7 @@ import {
 import { Box, Drawer } from "components";
 import styled from "styled-components";
 import { position } from "styled-system";
-/*
+/* l
 ==============================================
                     VIEW
 */
@@ -40,7 +40,7 @@ class _HomeContent extends React.Component {
       originalBodyOverflow: document.body.style.overflow,
       cart: {},
       isComplete: false,
-      isComingSoon: true
+      isComingSoon: false
     };
   }
 

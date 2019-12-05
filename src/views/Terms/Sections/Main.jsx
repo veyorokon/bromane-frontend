@@ -25,8 +25,7 @@ class Main extends React.Component {
         <br />
         <address>
           {" "}
-          1600 Villa St Apt 119, MOUNTAIN VIEW <br /> 94041 - CA, United States{" "}
-          <br />
+          8412 Paul Drive, WEST CHESTER <br /> 45069 - OH, United States <br />
         </address>{" "}
         <Text pt="5px">
           {" "}

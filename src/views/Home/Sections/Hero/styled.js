@@ -92,7 +92,7 @@ const HeroTextBoxWrapper = styled(Flex)`
   flex-direction: column;
   height: 100%;
   ${justifyContent};
-  ${margin},
+  ${margin};
 `;
 
 const HeroTextBox = styled(Box)``;
