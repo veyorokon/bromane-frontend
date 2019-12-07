@@ -98,6 +98,11 @@ class _HomeContent extends React.Component {
     let newState = this.state;
     newState.cart = newCart;
     newState.open = true;
+    if (typeof window !== "undefined") {
+      if (window.fbq != null) {
+        window.fbq("track", "AddToCart");
+      }
+    }
     this.setState({ newState });
   };
 
@@ -111,6 +116,11 @@ class _HomeContent extends React.Component {
   };
 
   handleComplete = () => {
+    if (typeof window !== "undefined") {
+      if (window.fbq != null) {
+        window.fbq("track", "Purchase");
+      }
+    }
     this.setState({ isComplete: true, cart: {} });
   };
 
