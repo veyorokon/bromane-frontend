@@ -148,7 +148,13 @@ class Checkout extends React.Component {
                             </IconWrapper>
                           }
                           footerButton={<FooterButton>Continue</FooterButton>}
-                          callback={() => console.log("Checkout ")}
+                          callback={() => {
+                            if (typeof window !== "undefined") {
+                              if (window.fbq != null) {
+                                window.fbq("track", "InitiateCheckout");
+                              }
+                            }
+                          }}
                           {...this.props}
                         />
                         <Account
@@ -159,6 +165,11 @@ class Checkout extends React.Component {
                           }
                           footerButton={<FooterButton>Next</FooterButton>}
                           callback={async () => {
+                            if (typeof window !== "undefined") {
+                              if (window.fbq != null) {
+                                window.fbq("track", "CompleteRegistration");
+                              }
+                            }
                             await this.onSubmit(createAccount, account);
                             setTimeout(() => {}, 600);
                           }}
@@ -191,6 +202,11 @@ class Checkout extends React.Component {
                           }
                           footerButton={<FooterButton>Continue</FooterButton>}
                           callback={async () => {
+                            if (typeof window !== "undefined") {
+                              if (window.fbq != null) {
+                                window.fbq("track", "AddPaymentInfo");
+                              }
+                            }
                             await this.onSubmit(setStripeCard, payment, true);
                             setTimeout(() => {}, 600);
                           }}
