@@ -124,7 +124,7 @@ class _HomeContent extends React.Component {
     if (typeof window !== "undefined") {
       if (window.fbq != null) {
         window.fbq("track", "Purchase", {
-          value: 20,
+          value: 10,
           currency: "USD",
           content_type: "product"
         });
