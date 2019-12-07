@@ -118,7 +118,11 @@ class _HomeContent extends React.Component {
   handleComplete = () => {
     if (typeof window !== "undefined") {
       if (window.fbq != null) {
-        window.fbq("track", "Purchase");
+        window.fbq("track", "Purchase", {
+          value: 20,
+          currency: "USD",
+          content_type: "product"
+        });
       }
     }
     this.setState({ isComplete: true, cart: {} });
