@@ -6,7 +6,7 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { StripeProvider } from "react-stripe-elements";
-import theme from "assets/theme";
+import theme from "theme";
 import Home from "layouts/Home.jsx";
 
 import ApolloClient from "apollo-boost";
