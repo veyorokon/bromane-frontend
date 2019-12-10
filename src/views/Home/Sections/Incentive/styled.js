@@ -10,7 +10,6 @@ const TitleWrapper = styled(FlexColumn)`
   ${lineHeight}
 `;
 const ImageWrapper = styled(Box)`
-  margin: 0 auto;
   padding-bottom: 2rem;
 `;
 

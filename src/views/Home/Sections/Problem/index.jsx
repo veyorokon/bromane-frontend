@@ -32,7 +32,10 @@ class Problem extends React.Component {
             deserve hair.
           </Title>
         </S.TitleWrapper>
-        <S.ImageWrapper width={["85vw", "85vw", "80vw", "75vw", "50vw"]}>
+        <S.ImageWrapper
+          margin="auto"
+          width={["85vw", "85vw", "80vw", "75vw", "50vw"]}
+        >
           <S.Image src={productImg} />
         </S.ImageWrapper>
       </FlexColumn>

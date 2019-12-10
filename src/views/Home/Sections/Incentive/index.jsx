@@ -23,7 +23,10 @@ class Incentive extends React.Component {
             A full head of hair for just $15 a month
           </SubTitle>
         </S.TitleWrapper>
-        <S.ImageWrapper width={["85vw", "85vw", "80vw", "55vw", "40vw"]}>
+        <S.ImageWrapper
+          margin="auto"
+          width={["85vw", "85vw", "80vw", "55vw", "40vw"]}
+        >
           <S.Image src={productImg} />
         </S.ImageWrapper>
         <S.TitleWrapper
