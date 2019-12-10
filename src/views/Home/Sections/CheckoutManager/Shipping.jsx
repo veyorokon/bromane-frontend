@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel } from "components";
+import { Panel } from "components/composite";
 import MenuItem from "@material-ui/core/MenuItem";
 import * as S from "./styled";
 import { states } from "./constants";

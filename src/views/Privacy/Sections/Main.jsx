@@ -1,5 +1,6 @@
 import React from "react";
-import { FlexColumn, Title, SubTitle, Text } from "components";
+import { FlexColumn, Text } from "components/core";
+import { Title, SubTitle } from "components/styled";
 import * as S from "./styled";
 
 class Main extends React.Component {

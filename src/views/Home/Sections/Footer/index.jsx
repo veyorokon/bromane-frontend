@@ -1,7 +1,6 @@
 import React from "react";
-import { Text } from "components";
 import * as S from "./styled";
-import { StyledLink } from "components";
+import { StyledLink } from "components/styled";
 
 class Footer extends React.Component {
   render() {

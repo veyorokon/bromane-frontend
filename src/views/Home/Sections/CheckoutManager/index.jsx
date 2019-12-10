@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel, Tabs } from "components";
+import { Panel, Tabs } from "components/composite";
 import emptyCart from "assets/img/lookingup-cart-compressed.jpeg";
 import { Mutation } from "react-apollo";
 import Overview from "./Overview";

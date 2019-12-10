@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { padding, textAlign, lineHeight } from "styled-system";
-import { Flex, FlexColumn, Box } from "components";
+import { Flex, FlexColumn, Box } from "components/core";
 
 const SolutionWrapper = styled(Flex)`
   flex-direction: column;

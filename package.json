@@ -21,6 +21,7 @@
     "react-stripe-elements": "^5.0.0",
     "react-success-indicator": "^1.0.0",
     "react-tabs": "^3.0.0",
+    "rebass": "^4.0.7",
     "stripe": "^7.9.0",
     "styled-components": "^4.3.2",
     "styled-css-grid": "^1.2.1",

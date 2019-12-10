@@ -1,4 +1,6 @@
-import { Box, Flex, AdaptiveText, appearKeyFrame } from "components";
+import { Box, Flex } from "components/core";
+import { appear } from "components/core";
+import { AdaptiveText } from "components/styled";
 import styled from "styled-components";
 import { width, fontSize, maxHeight } from "styled-system";
 
@@ -30,7 +32,7 @@ const TextWrapper = styled(Flex)`
 `;
 const Text = styled(AdaptiveText)`
   font-weight: 500;
-  animation-name: ${appearKeyFrame};
+  animation-name: ${appear};
   animation-duration: 0.6s;
   -webkit-animation-duration: 400ms;
   animation-duration: 400ms;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Box, FlexColumn } from "components";
+import { Box, FlexColumn } from "components/core";
 import {
   padding,
   background,

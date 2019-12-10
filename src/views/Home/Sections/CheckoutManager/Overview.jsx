@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel, ProductBox, ItemizedLine } from "components";
+import { Panel, ProductBox, ItemizedLine } from "components/composite";
 import productImg from "assets/img/products-thumbnail-compressed.jpeg";
 
 export default function Overview(props) {

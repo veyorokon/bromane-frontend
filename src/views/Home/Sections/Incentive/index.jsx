@@ -1,5 +1,6 @@
 import React from "react";
-import { FlexColumn, Title, SubTitle } from "components";
+import { FlexColumn } from "components/core";
+import { Title, SubTitle } from "components/styled";
 import productImg from "assets/img/all-products-compressed.jpeg";
 import * as S from "./styled";
 

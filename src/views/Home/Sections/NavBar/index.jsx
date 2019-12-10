@@ -6,7 +6,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { ReactComponent as BromaneLogo } from "assets/logo/logo-desktop.svg";
 import * as S from "./styled";
-import { StyledLink } from "components";
+import { StyledLink } from "components/styled";
 /*
 ==============================================
                     VIEW

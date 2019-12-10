@@ -1,5 +1,5 @@
 import { lineHeight, textAlign, padding } from "styled-system";
-import { Box, FlexColumn } from "components";
+import { Box, FlexColumn } from "components/core";
 import styled from "styled-components";
 
 const TitleWrapper = styled(FlexColumn)`

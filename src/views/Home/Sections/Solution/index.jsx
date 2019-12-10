@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  Box,
-  Text,
-  RightCallOut,
-  LeftCallOut,
-  CallToAction,
-  Title
-} from "components";
+import { Box, Text } from "components/core";
+import { Title } from "components/styled";
+import { CallToAction } from "components/composite";
+import { RightCallOut, LeftCallOut } from "components/composite";
 import { withRouter } from "react-router-dom";
 import ReactCompareImage from "react-compare-image";
 

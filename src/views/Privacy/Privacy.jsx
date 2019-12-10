@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Box } from "components";
+import { Box } from "components/core";
 import styled from "styled-components";
 import Main from "./Sections/Main";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { NavBar, Footer } from "views/Home/Sections";
 const PrivacyWrapper = styled(Box)`
   position: relative;

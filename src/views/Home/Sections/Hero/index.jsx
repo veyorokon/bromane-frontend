@@ -3,7 +3,8 @@
                     IMPORTS
 */
 import React from "react";
-import { Text, AnimatedText } from "components";
+import { Text } from "components/core";
+import { AnimatedText } from "components/styled";
 import { withRouter } from "react-router-dom";
 import mobileImg from "assets/img/bromane-mobile-compressed.jpeg";
 import desktopImg from "assets/img/bromane-desktop-compressed.jpeg";

@@ -1,5 +1,6 @@
 import React from "react";
-import { Panel, Tabs, ProductBox, ItemizedLine, Flex } from "components";
+import { Flex } from "components/core";
+import { Panel, ProductBox, ItemizedLine } from "components/composite";
 import productImg from "assets/img/products-thumbnail-compressed.jpeg";
 import * as S from "./styled";
 

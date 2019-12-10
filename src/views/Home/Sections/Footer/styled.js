@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { color, textAlign } from "styled-system";
-import { Box, FlexColumn, Text } from "components";
+import { Box, Flex, Text } from "components/core";
 
 const FooterWrapper = styled(Box)`
   background-color: #26272b;
@@ -25,7 +25,8 @@ const FooterRow = styled(Box)`
   display: flex;
   flex-wrap: wrap;
 `;
-const FooterCol = styled(FlexColumn)`
+const FooterCol = styled(Flex)`
+  flex-direction: column;
   float: left;
   padding: 0 calc(3rem + (12 * (100vw - 48rem) / 672));
   min-width: 20rem;

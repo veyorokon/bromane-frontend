@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel } from "components";
+import { Panel } from "components/composite";
 import * as S from "./styled";
 
 export default function EmailSubscribe(props) {

@@ -15,7 +15,9 @@ import {
   CheckoutManager,
   Products
 } from "./Sections";
-import { Box, Drawer } from "components";
+import { Box } from "components/core";
+import { Drawer } from "components/composite";
+
 import styled from "styled-components";
 import { position } from "styled-system";
 /* l

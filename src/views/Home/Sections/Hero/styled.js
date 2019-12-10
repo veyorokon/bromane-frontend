@@ -2,7 +2,8 @@
 ==============================================
                     IMPORTS
 */
-import { Box, Flex, AnimatedText, Button } from "components";
+import { Box, Flex, Button } from "components/core";
+import { AnimatedText } from "components/styled";
 import styled from "styled-components";
 
 import {

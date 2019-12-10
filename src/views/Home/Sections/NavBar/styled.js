@@ -2,7 +2,7 @@
 ==============================================
                     IMPORTS
 */
-import { Box, Text, Flex } from "components";
+import { Box, Text, Flex } from "components/core";
 import styled from "styled-components";
 import {
   letterSpacing,

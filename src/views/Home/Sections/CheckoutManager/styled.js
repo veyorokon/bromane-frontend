@@ -8,8 +8,9 @@ import {
   alignSelf,
   maxWidth
 } from "styled-system";
+import { Box, Flex } from "components/core";
 
-import { AnimatedText, SubTitle, Box, Flex } from "components";
+import { AnimatedText, SubTitle } from "components/styled";
 
 import { FormControl, TextField } from "@material-ui/core";
 

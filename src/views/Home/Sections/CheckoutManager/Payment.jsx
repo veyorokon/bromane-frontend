@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Panel } from "components";
+import { Box } from "components/core";
+import { Panel } from "components/composite";
 import * as S from "./styled";
 
 export default function Payment(props) {
