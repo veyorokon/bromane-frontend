@@ -78,7 +78,16 @@ export function newID(prefix = "id") {
 function _recUpdateState(state, selector, newval) {
   if (selector.length > 1) {
     let field = selector.shift();
-    let subObject = { ..._recUpdateState(state[field], selector, newval) };
+    let subObject = {};
+    try {
+      //Select the subobject if it exists
+      subObject = { ..._recUpdateState(state[field], selector, newval) };
+    } catch {
+      //Create the subobject if it doesn't exist
+      subObject = {
+        ..._recUpdateState(state, selector, newval)
+      };
+    }
     return { ...state, [field]: subObject };
   } else {
     let updatedState = {};
@@ -90,5 +99,5 @@ function _recUpdateState(state, selector, newval) {
 export function updateState(state, selector, newval, autoAssign = true) {
   let newState = _recUpdateState(state, selector, newval);
   if (autoAssign) return Object.assign(state, newState);
-  return _recUpdateState(state, selector, newval);
+  return newState;
 }
