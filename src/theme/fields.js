@@ -12,6 +12,9 @@ import { compose } from "styled-system";
 /*
      Fields
  */
+
+const position = configure("position", "position");
+
 const overflow = configure("overflow", ["overflow"]);
 
 const top = configure("top", ["top"], "space");
@@ -21,6 +24,10 @@ const right = configure("right", ["right"], "space");
 
 const width = configure("width", ["w", "width"], "space");
 const height = configure("height", ["h", "height"], "space");
+const minWidth = configure("minWidth", ["minWidth"], "space");
+const minHeight = configure("minHeight", ["minHeight"], "space");
+const maxWidth = configure("maxWidth", ["maxWidth"], "space");
+const maxHeight = configure("maxHeight", ["maxHeight"], "space");
 
 const background = configure("background", ["bg", "background"], "colors");
 const color = configure("color", "color", "colors");
@@ -71,6 +78,11 @@ const generics = compose(
   width,
   height,
   overflow,
+  position,
+  minWidth,
+  minHeight,
+  maxWidth,
+  maxHeight,
   top,
   bottom,
   left,
@@ -80,7 +92,6 @@ const generics = compose(
 const borderColor = configure("borderColor", ["borderColor"], "colors");
 
 const display = configure("display", "display");
-const position = configure("position", "position");
 
 export {
   top,
@@ -106,6 +117,10 @@ export {
   paddingLeft,
   paddingRight,
   paddingBottom,
+  minWidth,
+  minHeight,
+  maxWidth,
+  maxHeight,
   width,
   height,
   borderColor,

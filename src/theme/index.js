@@ -18,6 +18,10 @@ import {
   paddingRight,
   paddingBottom,
   borderColor,
+  minWidth,
+  minHeight,
+  maxWidth,
+  maxHeight,
   display
 } from "./fields";
 
@@ -41,5 +45,9 @@ export {
   paddingBottom,
   borderColor,
   display,
+  minWidth,
+  minHeight,
+  maxWidth,
+  maxHeight,
   configure
 };

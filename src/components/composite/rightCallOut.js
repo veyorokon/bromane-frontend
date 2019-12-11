@@ -28,6 +28,8 @@ import {
   right,
   system
 } from "styled-system";
+import { Drawer } from "./drawer";
+import { Panel, Tabs } from "./forms";
 import { Link as DomLink } from "react-router-dom";
 
 import { Close } from "styled-icons/evil/Close";
@@ -722,6 +724,9 @@ export {
   CallToAction,
   AdaptiveText,
   Link,
+  Drawer,
+  Panel,
+  Tabs,
   ProductBox,
   ItemizedLine,
   StyledLink,
