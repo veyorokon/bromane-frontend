@@ -1,7 +1,7 @@
 import React from "react";
 import { SubTitle, Title } from "components/styled";
 import { Text, FlexColumn } from "components/core";
-import { CallToAction } from "components/composite";
+import { CallToAction } from "components/styled";
 import * as S from "./styled";
 import { PRODUCTS } from "./graphql";
 import { Query } from "react-apollo";

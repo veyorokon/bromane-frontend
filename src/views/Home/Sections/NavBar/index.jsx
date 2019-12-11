@@ -29,7 +29,7 @@ class NavBar extends React.Component {
       >
         <S.NavItemsContainer color={color} width="100%">
           <S.NavFlex height="100%" width="33%" alignItems="center">
-            <S.SVGWrapper width={["3rem", "4rem"]}>
+            <S.SVGWrapper marginLeft="1rem" width={["3rem", "4rem"]}>
               <BromaneLogo />
             </S.SVGWrapper>
           </S.NavFlex>
@@ -48,6 +48,7 @@ class NavBar extends React.Component {
             <S.SVGWrapper
               onClick={this.props.toggleDrawer}
               width={["3rem", "4rem"]}
+              mr={["0.5rem", "0"]}
             >
               {cartItems > 0 && (
                 <S.Badge

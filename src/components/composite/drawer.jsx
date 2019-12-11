@@ -2,7 +2,6 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { ArrowRightCircle } from "styled-icons/feather/ArrowRightCircle";
 import { system, display, width } from "styled-system";
-import { Drawer as MUIDrawer } from "@material-ui/core";
 
 const StyledDrawer = styled.div`
   height: 100%;

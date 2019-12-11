@@ -77,6 +77,11 @@ const generics = compose(
   right
 );
 
+const borderColor = configure("borderColor", ["borderColor"], "colors");
+
+const display = configure("display", "display");
+const position = configure("position", "position");
+
 export {
   top,
   bottom,
@@ -102,5 +107,8 @@ export {
   paddingRight,
   paddingBottom,
   width,
-  height
+  height,
+  borderColor,
+  display,
+  position
 };

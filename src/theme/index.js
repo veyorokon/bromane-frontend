@@ -16,7 +16,9 @@ import {
   paddingTop,
   paddingLeft,
   paddingRight,
-  paddingBottom
+  paddingBottom,
+  borderColor,
+  display
 } from "./fields";
 
 export default theme;
@@ -37,5 +39,7 @@ export {
   paddingLeft,
   paddingRight,
   paddingBottom,
+  borderColor,
+  display,
   configure
 };

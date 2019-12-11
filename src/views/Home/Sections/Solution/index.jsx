@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Text } from "components/core";
 import { Title } from "components/styled";
-import { CallToAction } from "components/composite";
+import { CallToAction } from "components/styled";
 import { RightCallOut, LeftCallOut } from "components/composite";
 import { withRouter } from "react-router-dom";
 import ReactCompareImage from "react-compare-image";
