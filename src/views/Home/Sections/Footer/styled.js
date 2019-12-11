@@ -29,7 +29,7 @@ const FooterCol = styled(Flex)`
   flex-direction: column;
   float: left;
   padding: 0 calc(3rem + (12 * (100vw - 48rem) / 672));
-  min-width: 20rem;
+  min-width: fit-content;
   margin-bottom: 2rem;
   flex-grow: 1;
 `;

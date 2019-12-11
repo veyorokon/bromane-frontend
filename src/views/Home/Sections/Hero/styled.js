@@ -30,7 +30,6 @@ const HomeWrapper = styled(Box)`
 const HeroContentWrapper = styled(Flex)`
   flex-wrap: wrap;
   height: 100%;
-  ${margin}
 `;
 const backgroundImage = style({
   prop: "backgroundImage"
@@ -42,7 +41,6 @@ const HeroImageBox = styled(Flex)`
   width: 100%;
   transition: all 0.4s ease-in-out;
   ${backgroundImage};
-  ${margin}
 `;
 
 const SignupButton = styled(AnimatedText, Button)`
@@ -63,7 +61,6 @@ const SignupButton = styled(AnimatedText, Button)`
   &:active {
     background: #f29422;
   }
-  ${display}
 `;
 
 const HeroText = styled.h1`

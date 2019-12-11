@@ -100,7 +100,14 @@ class HeroSection extends React.Component {
       <S.HeroContentWrapper>
         <S.HeroImageBox
           mt={["7rem", "8rem"]}
-          backgroundImage={[CenterImage, CenterImage, CenterImage, RightImage]}
+          backgroundImage={[
+            CenterImage,
+            CenterImage,
+            CenterImage,
+            CenterImage,
+            CenterImage,
+            RightImage
+          ]}
           bg={"purple.0"}
           justifyContent={["center", "center", "center", "flex-start"]}
         >
