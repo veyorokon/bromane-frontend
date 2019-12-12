@@ -1,36 +1,35 @@
-import React from "react";
-import { SubTitle, Title, CallToAction, FlexColumn, Text } from "components";
+import React, {useState} from "react";
+import {SubTitle, Title, CallToAction, FlexColumn, Text} from "components";
 import * as S from "./styled";
-import { PRODUCTS } from "./graphql";
-import { Query } from "react-apollo";
+import {PRODUCTS} from "./graphql";
+import {Query} from "react-apollo";
 
-function importAll(r) {
-  return r.keys().map(r);
-}
+import {Button} from "styled-button-component";
+import {Dropdown, DropdownItem, DropdownMenu} from "styled-dropdown-component";
 
-function getImageName(product) {
-  let productImage = product.toLowerCase().replace(/ /g, "-");
-  return productImage;
-}
+export const SimpleDropdown = options => {
+  const [hidden, setHidden] = useState(true);
+  return (
+    <Dropdown>
+      <Button dropdownToggle onClick={() => setHidden(!hidden)}>
+        Dropdown Button
+      </Button>
+      <DropdownMenu hidden={hidden} toggle={() => setHidden(!hidden)}>
+        {options.options.map(function(option) {
+          return <DropdownItem key={option}>{option}</DropdownItem>;
+        })}
+      </DropdownMenu>
+    </Dropdown>
+  );
+};
 
-const images = importAll(
-  require.context("assets/img/fiber-colors/", false, /\.(jpg|jpeg)$/)
-);
-
-function findImage(productColor) {
-  var imageName = getImageName(productColor);
-  for (let i = 0; i < images.length; i++) {
-    if (images[i].includes(imageName)) return images[i];
-  }
-}
-
-const Image = ({ img }) => {
+const Image = ({img}) => {
   return <S.CardImage src={img} />;
 };
 
 class _Products extends React.Component {
   render() {
-    const { data, addCartItem } = this.props;
+    const {data, addCartItem} = this.props;
     return (
       <FlexColumn
         height={["fit-content"]}
@@ -88,9 +87,7 @@ class _Products extends React.Component {
                   />
                   <S.CardBody alignItems="center">
                     <SubTitle>{inventory.descriptionType}</SubTitle>
-                    {product.options.map(function(option) {
-                      return <SubTitle>{option}</SubTitle>;
-                    })}
+                    <SimpleDropdown options={product.options} />
 
                     <CallToAction
                       p="0 2rem 0 2rem"
@@ -123,7 +120,7 @@ class Products extends React.Component {
   render() {
     return (
       <Query query={PRODUCTS} fetchPolicy="network-only">
-        {({ loading, error, data }) => {
+        {({loading, error, data}) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`; //redirect on
           return <_Products {...this.props} data={data.product} />;
