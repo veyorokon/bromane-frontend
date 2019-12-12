@@ -7,15 +7,15 @@ import {Query} from "react-apollo";
 import {Button} from "styled-button-component";
 import {Dropdown, DropdownItem, DropdownMenu} from "styled-dropdown-component";
 
-export const SimpleDropdown = options => {
+export const SimpleDropdown = ({options, type}) => {
   const [hidden, setHidden] = useState(true);
   return (
     <Dropdown>
       <Button dropdownToggle onClick={() => setHidden(!hidden)}>
-        Dropdown Button
+        {type}
       </Button>
       <DropdownMenu hidden={hidden} toggle={() => setHidden(!hidden)}>
-        {options.options.map(function(option) {
+        {options.map(function(option) {
           return <DropdownItem key={option}>{option}</DropdownItem>;
         })}
       </DropdownMenu>
@@ -86,8 +86,14 @@ class _Products extends React.Component {
                     img={process.env.REACT_APP_BACKEND + inventory.image}
                   />
                   <S.CardBody alignItems="center">
-                    <SubTitle>{inventory.descriptionType}</SubTitle>
-                    <SimpleDropdown options={product.options} />
+                    {product.options.length > 1 ? (
+                      <SimpleDropdown
+                        type={inventory.descriptionType}
+                        options={product.options}
+                      />
+                    ) : (
+                      <span />
+                    )}
 
                     <CallToAction
                       p="0 2rem 0 2rem"
