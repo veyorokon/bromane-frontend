@@ -1,12 +1,19 @@
 import gql from "graphql-tag";
 
 const PRODUCTS = gql`
-  query plan {
-    plan {
+  query product {
+    product {
       id
-      price
-      color
-      stripePlanId
+      name
+      description
+      options
+      inventory {
+        id
+        price
+        description
+        descriptionType
+        image
+      }
     }
   }
 `;

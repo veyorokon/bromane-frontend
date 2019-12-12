@@ -59,39 +59,54 @@ class _Products extends React.Component {
           ]}
           bg="green.0"
         >
-          {data.map(function(product) {
-            let justify = "center";
-            return (
-              <S.Card
-                maxWidth={[
-                  "calc(26.5rem + ((136 * (100vw - 360px)) / 1079))",
-                  "calc(39.5rem + ((136 * (100vw - 360px)) / 1079))",
-                  "calc(21.5rem + ((136 * (100vw - 360px)) / 1079))",
-                  "calc(21.5rem + ((136 * (100vw - 360px)) / 1079))",
-                  "calc(19.5rem + ((136 * (100vw - 360px)) / 1079))"
-                ]}
-                width={["32rem", "40rem", "40rem", "32rem"]}
-                justifySelf={justify}
-                key={product.id}
-              >
-                <Image img={findImage(product.color)} />
-                <S.CardBody alignItems="center">
-                  <SubTitle>{product.color}</SubTitle>
-                  <CallToAction
-                    p="0 2rem 0 2rem"
-                    color="black.0"
-                    width={["100%", "80%", "80%", "80%", "100%"]}
-                    bg={["#f2b290", "#f2b290", "#f2b290", "yellow.0"]}
-                    onClick={() => addCartItem(product)}
-                  >
-                    <Text pt="5px" fontFamily="porto">
-                      ${product.price} - Get starter kit
-                    </Text>
-                  </CallToAction>
-                </S.CardBody>
-              </S.Card>
-            );
-          })}
+          {data &&
+            data.map(function(product) {
+              let inventory;
+              try {
+                inventory = product.inventory[0];
+              } catch {
+                inventory = {};
+              }
+              let justify = "center";
+              console.log(product);
+              return (
+                <S.Card
+                  maxWidth={[
+                    "calc(26.5rem + ((136 * (100vw - 360px)) / 1079))",
+                    "calc(39.5rem + ((136 * (100vw - 360px)) / 1079))",
+                    "calc(21.5rem + ((136 * (100vw - 360px)) / 1079))",
+                    "calc(21.5rem + ((136 * (100vw - 360px)) / 1079))",
+                    "calc(19.5rem + ((136 * (100vw - 360px)) / 1079))"
+                  ]}
+                  width={["32rem", "40rem", "40rem", "32rem"]}
+                  justifySelf={justify}
+                  key={product.id}
+                >
+                  <SubTitle>{product.name}</SubTitle>
+                  <Image
+                    img={process.env.REACT_APP_BACKEND + inventory.image}
+                  />
+                  <S.CardBody alignItems="center">
+                    <SubTitle>{inventory.descriptionType}</SubTitle>
+                    {product.options.map(function(option) {
+                      return <SubTitle>{option}</SubTitle>;
+                    })}
+
+                    <CallToAction
+                      p="0 2rem 0 2rem"
+                      color="black.0"
+                      width={["100%", "80%", "80%", "80%", "100%"]}
+                      bg={["#f2b290", "#f2b290", "#f2b290", "yellow.0"]}
+                      onClick={() => addCartItem(inventory)}
+                    >
+                      <Text pt="5px" fontFamily="porto">
+                        ${inventory.price} - Add To Cart
+                      </Text>
+                    </CallToAction>
+                  </S.CardBody>
+                </S.Card>
+              );
+            })}
         </S.ProductsContainer>
         <FlexColumn p="2vw" mt="5%">
           <SubTitle textAlign="center" mt="5%">
@@ -111,7 +126,7 @@ class Products extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`; //redirect on
-          return <_Products {...this.props} data={data.plan} />;
+          return <_Products {...this.props} data={data.product} />;
         }}
       </Query>
     );

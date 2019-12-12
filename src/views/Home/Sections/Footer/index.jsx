@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "components";
 import * as S from "./styled";
 import { StyledLink } from "components";
 
@@ -36,14 +35,7 @@ class Footer extends React.Component {
               </S.FooterText>
             </S.FooterCol>
           </S.FooterRow>
-          <S.FooterRow>
-            <S.FooterCol width="50%">
-              <S.FooterHeader>Need to Cancel?</S.FooterHeader>
-              <S.FooterText textAlign="justify">
-                No questions asked, email: support@bromane.com
-              </S.FooterText>
-            </S.FooterCol>
-          </S.FooterRow>
+
           <S.HzLine />
           <S.FooterRow>
             <S.FooterCol width="50%">
