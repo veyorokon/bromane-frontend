@@ -1,7 +1,7 @@
 import React from "react";
-import { Panel, Tabs } from "components";
+import {Panel, Tabs} from "components";
 import emptyCart from "assets/img/lookingup-cart-compressed.jpeg";
-import { Mutation } from "react-apollo";
+import {Mutation} from "react-apollo";
 import Overview from "./Overview";
 import Shipping from "./Shipping";
 import Account from "./Account";
@@ -35,7 +35,7 @@ function getToken() {
   }
 }
 
-const IconWrapper = ({ children }) => (
+const IconWrapper = ({children}) => (
   <S.SVGWrapper>
     <S.Icon
       width={["2.7rem", "3rem", "3.5rem", "3.5rem", "2.5rem", "3", "3.5rem"]}
@@ -45,7 +45,7 @@ const IconWrapper = ({ children }) => (
   </S.SVGWrapper>
 );
 
-const FooterButton = ({ children }) => (
+const FooterButton = ({children}) => (
   <S.DrawerButton
     width={["100%", "80%", "80%", "80%", "100%"]}
     color={["white.0"]}
@@ -80,7 +80,7 @@ class Checkout extends React.Component {
     super(props);
 
     this.state = {
-      account: { firstName: "", lastName: "", email: "", password: "" },
+      account: {firstName: "", lastName: "", email: "", password: ""},
       shipping: {
         addressLine1: "",
         addressLine2: "",
@@ -88,19 +88,19 @@ class Checkout extends React.Component {
         addressZip: "",
         addressState: ""
       },
-      payment: { number: "", expMonth: 0, expYear: 0, cvc: "" }
+      payment: {number: "", expMonth: 0, expYear: 0, cvc: ""}
     };
   }
 
   handleStateChange(section, field, value) {
     let newState = this.state;
     newState[section][field] = value;
-    this.setState({ ...newState });
+    this.setState({...newState});
   }
 
   onSubmit = async (mutation, values, useToken = false, isComplete = false) => {
     if (useToken) values["token"] = getToken();
-    const response = await mutation({ variables: values });
+    const response = await mutation({variables: values});
     if (response.data.createUser) {
       localStorage.setItem("sessionToken", response.data.createUser.token);
     }
@@ -111,9 +111,9 @@ class Checkout extends React.Component {
   };
 
   render() {
-    const { isEmpty } = this.props || true;
-    const { product, onItemRemove, isComingSoon } = this.props;
-    const { account, shipping, payment } = this.state;
+    const {isEmpty} = this.props || true;
+    const {cart, onItemRemove, isComingSoon} = this.props;
+    const {account, shipping, payment} = this.state;
     if (isComingSoon) {
       return <ComingSoonCart />;
     }
@@ -128,7 +128,10 @@ class Checkout extends React.Component {
           body={"We'll send you an email once it has shipped."}
         />
       );
-    const order = { planKey: product.id, quantity: 1, update: "create" };
+    // const order = { planKey: product.id, quantity: 1, update: "create" };
+    console.log(cart);
+    let product,
+      order = null;
     return (
       <Mutation mutation={CREATE_ACCOUNT}>
         {createAccount => (
@@ -256,7 +259,7 @@ class Subscribe extends React.Component {
     super(props);
 
     this.state = {
-      subscriber: { email: "" },
+      subscriber: {email: ""},
       complete: false
     };
   }
@@ -264,16 +267,16 @@ class Subscribe extends React.Component {
   handleStateChange(section, field, value) {
     let newState = this.state;
     newState[section][field] = value;
-    this.setState({ ...newState });
+    this.setState({...newState});
   }
 
   onSubmit = async (mutation, values) => {
-    await mutation({ variables: values });
-    this.setState({ complete: true });
+    await mutation({variables: values});
+    this.setState({complete: true});
   };
 
   render() {
-    const { subscriber, complete } = this.state;
+    const {subscriber, complete} = this.state;
     if (complete)
       return (
         <Success

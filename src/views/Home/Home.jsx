@@ -3,7 +3,7 @@
                     IMPORTS
 */
 import React from "react";
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {
   NavBar,
   Hero,
@@ -15,9 +15,10 @@ import {
   CheckoutManager,
   Products
 } from "./Sections";
-import { Box, Drawer } from "components";
+import {Box, Drawer} from "components";
 import styled from "styled-components";
-import { position } from "styled-system";
+import {position} from "styled-system";
+import updateState from "lib/updateState";
 /* l
 ==============================================
                     VIEW
@@ -46,27 +47,28 @@ class _HomeContent extends React.Component {
 
   toggleDrawer = event => {
     event.preventDefault();
-    const { open } = this.state;
+    const {open} = this.state;
     if (!open) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = this.state.originalBodyOverflow;
     }
     if (this.state.isComplete && open) {
-      this.setState({ open: !open, cart: {}, isComplete: false });
+      this.setState({open: !open, cart: {}, isComplete: false});
     } else {
-      this.setState({ open: !open });
+      this.setState({open: !open});
     }
   };
 
   getCartCount() {
-    let cart = this.state.cart;
+    const {cart} = this.state;
     let total = 0;
     for (var key in cart) {
-      if (cart[key].hasOwnProperty("count")) {
-        total += cart[key].count;
+      if (cart[key].hasOwnProperty("quantity")) {
+        total += cart[key].quantity;
       }
     }
+
     return total;
   }
 
@@ -87,27 +89,33 @@ class _HomeContent extends React.Component {
   }
 
   handleItemRemove = () => {
-    this.setState({ cart: {} });
+    this.setState({cart: {}});
   };
 
   handleAddCartItem = product => {
-    const productCount = this.getProductCount(product);
-    const productCartItem = { count: productCount + 1, ...product };
-    let newCart = this.state.cart;
-    newCart[product.id] = productCartItem;
-    let newState = this.state;
-    newState.cart = newCart;
-    newState.open = true;
+    let currentQuantity;
+    try {
+      currentQuantity = this.state.cart[product.id].quantity;
+    } catch {
+      currentQuantity = 0;
+    }
+    product.quantity = currentQuantity + 1;
+    const newState = updateState(
+      this.state,
+      ["cart", product.id],
+      product,
+      false
+    );
+    this.setState(newState);
     if (typeof window !== "undefined") {
       if (window.fbq != null) {
         window.fbq("track", "AddToCart");
       }
     }
-    this.setState({ newState });
   };
 
   replaceCartItem = product => {
-    const productCartItem = { count: 1, ...product };
+    const productCartItem = {count: 1, ...product};
     let newCart = productCartItem;
     let newState = this.state;
     newState.cart = newCart;
@@ -117,7 +125,7 @@ class _HomeContent extends React.Component {
         window.fbq("track", "AddToCart");
       }
     }
-    this.setState({ newState });
+    this.setState({newState});
   };
 
   handleComplete = () => {
@@ -130,7 +138,7 @@ class _HomeContent extends React.Component {
         });
       }
     }
-    this.setState({ isComplete: true, cart: {} });
+    this.setState({isComplete: true, cart: {}});
   };
 
   render() {
@@ -144,10 +152,10 @@ class _HomeContent extends React.Component {
     const navBG = this.state.open
       ? ["nav.0", "nav.0", "nav.0", "nav.0", "nav.1"]
       : ["nav.0"]; // Change depending on Y
-    const { isComplete, isComingSoon } = this.state;
-    const cartCount = isComingSoon ? 0 : this.getExclusiveCartCount();
+    const {isComplete, isComingSoon} = this.state;
+    const cartCount = this.getCartCount();
     const isEmpty = !cartCount && !isComplete;
-    const product = this.state.cart;
+    const cart = this.state.cart;
     return (
       <HomeWrapper>
         <NavBar
@@ -162,7 +170,7 @@ class _HomeContent extends React.Component {
           <Problem />
           <Solution />
           <Incentive />
-          <Products addCartItem={this.replaceCartItem} />
+          <Products addCartItem={this.handleAddCartItem} />
           <Mission />
         </HomeSections>
         <footer>
@@ -180,7 +188,7 @@ class _HomeContent extends React.Component {
             <CheckoutManager
               isComingSoon={isComingSoon}
               onCheckoutComplete={this.handleComplete}
-              product={product}
+              cart={cart}
               isEmpty={isEmpty}
               isComplete={isComplete}
               onItemRemove={() => this.handleItemRemove}

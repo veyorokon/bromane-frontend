@@ -13,9 +13,14 @@ const PRODUCTS = gql`
         description
         descriptionType
         image
+        product {
+          id
+          name
+          description
+        }
       }
     }
   }
 `;
 
-export { PRODUCTS };
+export {PRODUCTS};

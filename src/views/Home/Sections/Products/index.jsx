@@ -7,29 +7,79 @@ import {Query} from "react-apollo";
 import {Button} from "styled-button-component";
 import {Dropdown, DropdownItem, DropdownMenu} from "styled-dropdown-component";
 
-export const SimpleDropdown = ({options, type}) => {
-  const [hidden, setHidden] = useState(true);
-  return (
-    <Dropdown>
-      <Button dropdownToggle onClick={() => setHidden(!hidden)}>
-        {type}
-      </Button>
-      <DropdownMenu hidden={hidden} toggle={() => setHidden(!hidden)}>
-        {options.map(function(option) {
-          return <DropdownItem key={option}>{option}</DropdownItem>;
-        })}
-      </DropdownMenu>
-    </Dropdown>
-  );
-};
+import updateState from "lib/updateState";
+
+class SimpleDropdown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hidden: true,
+      selected: ""
+    };
+  }
+  setHidden = hidden => {
+    this.setState({hidden});
+  };
+  setSelected = selected => {
+    const {updateInventorySelection, product} = this.props;
+    this.setState({selected, hidden: true});
+    const itemPlan = product.inventory.filter(
+      option => option.description === selected
+    )[0];
+    updateInventorySelection(product, itemPlan);
+  };
+  render() {
+    const {setHidden, setSelected} = this;
+    const {hidden, selected} = this.state;
+    const {type, options} = this.props;
+    return (
+      <Dropdown>
+        <Button dropdownToggle onClick={() => setHidden(!hidden)}>
+          {selected ? type + ": " + selected : type}
+        </Button>
+        <DropdownMenu hidden={hidden} toggle={() => setHidden(!hidden)}>
+          {options.map(function(option) {
+            return (
+              <DropdownItem onClick={() => setSelected(option)} key={option}>
+                {option}
+              </DropdownItem>
+            );
+          })}
+        </DropdownMenu>
+      </Dropdown>
+    );
+  }
+}
 
 const Image = ({img}) => {
   return <S.CardImage src={img} />;
 };
 
 class _Products extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inventory: props.data
+    };
+  }
+
+  handleUpdateInventorySelection = (productSelected, selectedItemPlan) => {
+    updateState(
+      this.state,
+      ["selection", productSelected.id, "selected"],
+      selectedItemPlan
+    );
+  };
+
+  getSelectedInventory = product => {
+    if (this.state.selection && this.state.selection[product.id])
+      return this.state.selection[product.id].selected;
+    return product.inventory[0];
+  };
+
   render() {
     const {data, addCartItem} = this.props;
+    const {handleUpdateInventorySelection, getSelectedInventory} = this;
     return (
       <FlexColumn
         height={["fit-content"]}
@@ -67,7 +117,6 @@ class _Products extends React.Component {
                 inventory = {};
               }
               let justify = "center";
-              console.log(product);
               return (
                 <S.Card
                   maxWidth={[
@@ -88,8 +137,12 @@ class _Products extends React.Component {
                   <S.CardBody alignItems="center">
                     {product.options.length > 1 ? (
                       <SimpleDropdown
+                        product={product}
                         type={inventory.descriptionType}
                         options={product.options}
+                        updateInventorySelection={
+                          handleUpdateInventorySelection
+                        }
                       />
                     ) : (
                       <span />
@@ -100,7 +153,7 @@ class _Products extends React.Component {
                       color="black.0"
                       width={["100%", "80%", "80%", "80%", "100%"]}
                       bg={["#f2b290", "#f2b290", "#f2b290", "yellow.0"]}
-                      onClick={() => addCartItem(inventory)}
+                      onClick={() => addCartItem(getSelectedInventory(product))}
                     >
                       <Text pt="5px" fontFamily="porto">
                         ${inventory.price} - Add To Cart
