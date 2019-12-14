@@ -72,10 +72,9 @@ class Tabs extends React.Component {
   }
 
   async handleChange(index, callback) {
-    console.log(this.props.children[this.state.selected].props.overrideDefault);
     if (index > this.state.selected && callback) await callback();
     if (!this.props.children[this.state.selected].props.overrideDefault)
-      this.setState({ selected: index });
+      this.setState({selected: index});
   }
 
   render() {
@@ -121,4 +120,4 @@ class Panel extends React.Component {
   }
 }
 
-export { Tabs, Panel };
+export {Tabs, Panel};

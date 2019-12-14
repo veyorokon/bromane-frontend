@@ -1,8 +1,8 @@
 import React from "react";
-import { Panel } from "components";
+import {Panel} from "components";
 import MenuItem from "@material-ui/core/MenuItem";
 import * as S from "./styled";
-import { states } from "./constants";
+import {states} from "./constants";
 
 export default function Shipping(props) {
   const handleChange = name => event => {
@@ -18,6 +18,15 @@ export default function Shipping(props) {
         Shipping Address
       </S.CartSubTitle>
       <S.Form noValidate={false} autoComplete="off">
+        <S.FullInput
+          required
+          id="addressName"
+          type="address"
+          label="Name"
+          defaultValue=""
+          margin="normal"
+          onChange={handleChange("addressName")}
+        />
         <S.FullInput
           required
           id="addressLine1"
