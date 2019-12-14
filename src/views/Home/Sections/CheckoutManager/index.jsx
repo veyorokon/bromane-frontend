@@ -110,8 +110,20 @@ class Checkout extends React.Component {
     }
   };
 
+  getOrderList = () => {
+    const {cart} = this.props;
+    let arr = [];
+    for (var key in cart) {
+      for (let q = 0; q < cart[key].quantity; q++) {
+        arr.push(key);
+      }
+    }
+    return arr;
+  };
+
   render() {
     const {isEmpty} = this.props || true;
+    const {getOrderList} = this;
     const {cart, onItemRemove, isComingSoon} = this.props;
     const {account, shipping, payment} = this.state;
     if (isComingSoon) {
@@ -128,10 +140,7 @@ class Checkout extends React.Component {
           body={"We'll send you an email once it has shipped."}
         />
       );
-    // const order = { planKey: product.id, quantity: 1, update: "create" };
-    console.log(cart);
-    let product,
-      order = null;
+    const order = getOrderList();
     return (
       <Mutation mutation={CREATE_ACCOUNT}>
         {createAccount => (
@@ -226,7 +235,6 @@ class Checkout extends React.Component {
                             </IconWrapper>
                           }
                           shipping={shipping}
-                          product={product}
                           footerButton={
                             <FooterButton>Place Order</FooterButton>
                           }

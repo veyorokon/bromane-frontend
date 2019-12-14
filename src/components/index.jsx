@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {
   space,
   color,
@@ -28,11 +28,11 @@ import {
   right,
   system
 } from "styled-system";
-import { Drawer } from "./drawer";
-import { Panel, Tabs } from "./forms";
-import { Link as DomLink } from "react-router-dom";
+import {Drawer} from "./drawer";
+import {Panel, Tabs} from "./forms";
+import {Link as DomLink} from "react-router-dom";
 
-import { Close } from "styled-icons/evil/Close";
+import {Close} from "styled-icons/evil/Close";
 
 /*
 ==============================================
@@ -193,7 +193,7 @@ const TitleWrapper = styled(AnimatedText)`
   ${margin}
 `;
 
-const SubTitle = ({ children, textAlign, margin = "3rem auto", ...rest }) => (
+const SubTitle = ({children, textAlign, margin = "3rem auto", ...rest}) => (
   <SubTitleWrapper
     fontSize={["1.5rem", "1.5rem", "1.5rem", "1.5rem", "2rem", "2rem", "2rem"]}
     margin={margin}
@@ -204,7 +204,7 @@ const SubTitle = ({ children, textAlign, margin = "3rem auto", ...rest }) => (
   </SubTitleWrapper>
 );
 
-const Title = ({ children, textAlign }) => (
+const Title = ({children, textAlign}) => (
   <TitleWrapper
     fontSize={["3rem", "3.6rem", "4rem", "4rem", "4.2rem", "4.4rem", "4.4rem"]}
     lineHeight={["3.6rem", "4.6rem", "5.8rem"]}
@@ -348,7 +348,7 @@ const titleFontSize = [
 
 class RightCallOut extends React.Component {
   render() {
-    const { title, children, media } = this.props;
+    const {title, children, media} = this.props;
     const textContainerWidth = [
       "100%",
       "100%",
@@ -486,7 +486,7 @@ const LeftCORightContainerMobile = styled(Flex)`
 
 class LeftCallOut extends React.Component {
   render() {
-    const { title, children, desktopMedia, mobileMedia } = this.props;
+    const {title, children, desktopMedia, mobileMedia} = this.props;
     const textContainerWidth = [
       "100%",
       "100%",
@@ -631,7 +631,8 @@ class ProductBox extends React.Component {
       price,
       description,
       onItemRemove,
-      showItemRemove
+      showItemRemove,
+      plan
     } = this.props;
     return (
       <ProductThumbnailCard
@@ -666,7 +667,7 @@ class ProductBox extends React.Component {
             right={["1%", "3%", "3%", "3%", "1%", "3%"]}
             width={["2.5rem", "2.5rem", "2.5rem", "2.5rem", "2.6rem"]}
           >
-            {showItemRemove && <CloseIcon onClick={onItemRemove()} />}
+            {showItemRemove && <CloseIcon onClick={() => onItemRemove(plan)} />}
           </IconWrapper>
         </ProductDetail>
       </ProductThumbnailCard>
@@ -690,7 +691,7 @@ const LineLabel = styled(Flex)`
 
 class ItemizedLine extends React.Component {
   render() {
-    const { label, children, color } = this.props;
+    const {label, children, color} = this.props;
     return (
       <ItemizedLineContainer
         width={["100%", "80%", "80%", "80%", "100%", "90%", "80%"]}

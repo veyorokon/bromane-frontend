@@ -88,24 +88,33 @@ class _HomeContent extends React.Component {
     return this.state.cart[product.id].count;
   }
 
-  handleItemRemove = () => {
-    this.setState({cart: {}});
-  };
-
-  handleAddCartItem = product => {
+  handleItemRemove = plan => {
     let currentQuantity;
     try {
-      currentQuantity = this.state.cart[product.id].quantity;
+      currentQuantity = this.state.cart[plan.id].quantity;
     } catch {
       currentQuantity = 0;
     }
-    product.quantity = currentQuantity + 1;
-    const newState = updateState(
-      this.state,
-      ["cart", product.id],
-      product,
-      false
-    );
+    plan.quantity = Math.max(0, currentQuantity - 1);
+    let newState = this.state;
+    if (plan.quantity <= 0) {
+      delete newState.cart[plan.id];
+    } else {
+      newState = updateState(this.state, ["cart", plan.id], plan, false);
+    }
+    this.setState(newState);
+    console.log(this.state);
+  };
+
+  handleAddCartItem = plan => {
+    let currentQuantity;
+    try {
+      currentQuantity = this.state.cart[plan.id].quantity;
+    } catch {
+      currentQuantity = 0;
+    }
+    plan.quantity = currentQuantity + 1;
+    const newState = updateState(this.state, ["cart", plan.id], plan, false);
     this.setState(newState);
     if (typeof window !== "undefined") {
       if (window.fbq != null) {
@@ -191,7 +200,7 @@ class _HomeContent extends React.Component {
               cart={cart}
               isEmpty={isEmpty}
               isComplete={isComplete}
-              onItemRemove={() => this.handleItemRemove}
+              onItemRemove={this.handleItemRemove}
             />
           }
         ></Drawer>

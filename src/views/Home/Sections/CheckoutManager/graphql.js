@@ -77,19 +77,9 @@ const SET_STRIPE_CARD = gql`
 `;
 
 const CONFIRM_ORDER = gql`
-  mutation updateUserSubscription(
-    $planKey: Int!
-    $quantity: Int
-    $token: String!
-    $update: String!
-  ) {
-    updateUserSubscription(
-      planKey: $planKey
-      quantity: $quantity
-      token: $token
-      update: $update
-    ) {
-      user {
+  mutation CreateOrder($token: String!, $plans: [Int]!) {
+    createOrder(token: $token, plans: $plans) {
+      orderBox {
         id
       }
     }

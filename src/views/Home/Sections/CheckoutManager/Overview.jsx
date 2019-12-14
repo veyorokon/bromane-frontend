@@ -31,15 +31,22 @@ export default class Overview extends React.Component {
     const price = getOrderTotal().toFixed(2);
     return (
       <Panel {...props}>
-        {plans.map(function(plan) {
+        {plans.map(function(plan, index) {
           return (
             <ProductBox
               {...props}
-              key={plan.key}
+              plan={plan}
+              key={index}
               title={plan.product.name + " - " + plan.description}
               subtitle={plan.product.description}
               price={"$" + plan.price}
-              description={plan.descriptionType + ": " + plan.description}
+              description={
+                plan.descriptionType +
+                ": " +
+                plan.description +
+                " | quantity: " +
+                plan.quantity
+              }
               img={productImg}
             />
           );
