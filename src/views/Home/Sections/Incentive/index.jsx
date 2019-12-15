@@ -1,5 +1,5 @@
 import React from "react";
-import { FlexColumn, Title, SubTitle } from "components";
+import {FlexColumn, Title, SubTitle} from "components";
 import productImg from "assets/img/all-products-compressed.jpeg";
 import * as S from "./styled";
 
@@ -19,7 +19,7 @@ class Incentive extends React.Component {
         >
           <Title>Get your starter kit</Title>
           <SubTitle textAlign="center">
-            A full head of hair for just $15 a month
+            A full head of hair from $19.99
           </SubTitle>
         </S.TitleWrapper>
         <S.ImageWrapper width={["85vw", "85vw", "80vw", "55vw", "40vw"]}>
@@ -32,8 +32,8 @@ class Incentive extends React.Component {
           p={["1rem 5% 8rem 5%"]}
         >
           <SubTitle id="products" textAlign="center">
-            Get a free precision applicator, hairline touch-up cloth and best of
-            all, your confidence on your first order.
+            Starter kits include a precision applicator and a hairline touch-up
+            cloth.
           </SubTitle>
         </S.TitleWrapper>
       </FlexColumn>
