@@ -77,8 +77,26 @@ const SET_STRIPE_CARD = gql`
 `;
 
 const PLACE_ORDER = gql`
-  mutation CreateOrder($token: String!, $plans: [Int]!) {
-    createOrder(token: $token, plans: $plans) {
+  mutation CreateOrder(
+    $addressCity: String!
+    $addressLine1: String!
+    $addressLine2: String
+    $addressState: String!
+    $addressZip: String!
+    $cardToken: String!
+    $addressName: String!
+    $plans: [Int]
+  ) {
+    createOrder(
+      cardToken: $cardToken
+      plans: $plans
+      addressCity: $addressCity
+      addressLine1: $addressLine1
+      addressLine2: $addressLine2
+      addressState: $addressState
+      addressZip: $addressZip
+      addressName: $addressName
+    ) {
       orderBox {
         id
       }

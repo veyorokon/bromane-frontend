@@ -87,7 +87,8 @@ class Checkout extends React.Component {
         addressZip: "",
         addressState: ""
       },
-      payment: {number: "", expMonth: 0, expYear: 0, cvc: "", token: ""}
+      payment: {number: "", expMonth: 0, expYear: 0, cvc: ""},
+      cardToken: ""
     };
   }
 
@@ -114,7 +115,7 @@ class Checkout extends React.Component {
     let arr = [];
     for (var key in cart) {
       for (let q = 0; q < cart[key].quantity; q++) {
-        arr.push(key);
+        arr.push(parseInt(key));
       }
     }
     return arr;
@@ -168,27 +169,6 @@ class Checkout extends React.Component {
                   }}
                   {...this.props}
                 />
-                {/*<Account
-                          title={
-                            <IconWrapper>
-                              <S.LoginIcon />
-                            </IconWrapper>
-                          }
-                          footerButton={<FooterButton>Next</FooterButton>}
-                          callback={async () => {
-                            if (typeof window !== "undefined") {
-                              if (window.fbq != null) {
-                                window.fbq("track", "CompleteRegistration");
-                              }
-                            }
-                            await this.onSubmit(createAccount, account);
-                            setTimeout(() => {}, 600);
-                          }}
-                          stateChange={(field, value) =>
-                            this.handleStateChange("account", field, value)
-                          }
-                          {...this.props}
-                        />*/}
                 <Shipping
                   title={
                     <IconWrapper>
@@ -196,10 +176,6 @@ class Checkout extends React.Component {
                     </IconWrapper>
                   }
                   footerButton={<FooterButton>Next</FooterButton>}
-                  // callback={async () => {
-                  //   await this.onSubmit(updateUser, shipping, true);
-                  //   setTimeout(() => {}, 600);
-                  // }}
                   stateChange={(field, value) =>
                     this.handleStateChange("shipping", field, value)
                   }
@@ -218,14 +194,14 @@ class Checkout extends React.Component {
                         window.fbq("track", "AddPaymentInfo");
                       }
                     }
-                    //GET TOKEN AND STORE IN STATE
                     const data = await this.onSubmit(
                       getToken,
                       this.state.payment,
                       true
                     );
                     console.log(data);
-                    console.log(data.data.getStripeToken.cardToken);
+                    const token = data.data.getStripeToken.cardToken;
+                    this.setState({cardToken: token});
                   }}
                   stateChange={(field, value) =>
                     this.handleStateChange("payment", field, value)
@@ -242,7 +218,11 @@ class Checkout extends React.Component {
                   shipping={shipping}
                   footerButton={<FooterButton>Place Order</FooterButton>}
                   callback={async () => {
-                    await this.onSubmit(confirmOrder, order, true, true);
+                    let args = this.state.shipping;
+                    args.cardToken = this.state.cardToken;
+                    args.plans = order;
+                    console.log(args);
+                    await this.onSubmit(confirmOrder, args, false, true);
                     setTimeout(() => {}, 600);
                   }}
                   {...this.props}
