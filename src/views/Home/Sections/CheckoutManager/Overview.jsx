@@ -1,6 +1,7 @@
 import React from "react";
 import {Panel, ProductBox, ItemizedLine} from "components";
 import productImg from "assets/img/products-thumbnail-compressed.jpeg";
+import productImg2 from "assets/img/products-fiber-thumbnail-compressed.jpeg";
 
 export default class Overview extends React.Component {
   planList = () => {
@@ -47,7 +48,11 @@ export default class Overview extends React.Component {
                 " | quantity: " +
                 plan.quantity
               }
-              img={productImg}
+              img={
+                plan.product.name.toLowerCase().includes("starter")
+                  ? productImg
+                  : productImg2
+              }
             />
           );
         })}

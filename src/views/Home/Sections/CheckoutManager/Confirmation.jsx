@@ -1,6 +1,7 @@
 import React from "react";
 import {Panel, Tabs, ProductBox, ItemizedLine, Flex} from "components";
 import productImg from "assets/img/products-thumbnail-compressed.jpeg";
+import productImg2 from "assets/img/products-fiber-thumbnail-compressed.jpeg";
 import * as S from "./styled";
 
 export default class Confirmation extends React.Component {
@@ -54,7 +55,11 @@ export default class Confirmation extends React.Component {
                 " | quantity: " +
                 plan.quantity
               }
-              img={productImg}
+              img={
+                plan.product.name.toLowerCase().includes("starter")
+                  ? productImg
+                  : productImg2
+              }
             />
           );
         })}
