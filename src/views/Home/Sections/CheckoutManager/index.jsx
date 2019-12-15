@@ -122,7 +122,6 @@ class Checkout extends React.Component {
   };
   getToken = () => {
     const {payment} = this.state;
-    console.log(payment);
   };
 
   render() {

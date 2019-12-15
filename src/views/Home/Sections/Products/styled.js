@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Box, FlexColumn } from "components";
+import {Box, FlexColumn} from "components";
 import {
   padding,
   background,
@@ -10,7 +10,7 @@ import {
   textAlign,
   lineHeight
 } from "styled-system";
-import { system } from "styled-system";
+import {system} from "styled-system";
 
 const TitleWrapper = styled(FlexColumn)`
   font-weight: bold;
@@ -49,10 +49,11 @@ const CardImage = styled.img`
 
 const CardBody = styled(Box)`
   width: 100%;
-  height: 16rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   ${alignItems}
 `;
 
-export { TitleWrapper, ProductsContainer, Card, CardImage, CardBody };
+export {TitleWrapper, ProductsContainer, Card, CardImage, CardBody};

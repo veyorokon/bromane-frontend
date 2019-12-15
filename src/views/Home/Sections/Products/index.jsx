@@ -33,7 +33,7 @@ class SimpleDropdown extends React.Component {
     const {hidden, selected} = this.state;
     const {type, options} = this.props;
     return (
-      <Dropdown>
+      <Dropdown margin="auto">
         <Button dropdownToggle onClick={() => setHidden(!hidden)}>
           {selected ? type + ": " + selected : type}
         </Button>
@@ -64,11 +64,13 @@ class _Products extends React.Component {
   }
 
   handleUpdateInventorySelection = (productSelected, selectedItemPlan) => {
-    updateState(
+    const newState = updateState(
       this.state,
       ["selection", productSelected.id, "selected"],
-      selectedItemPlan
+      selectedItemPlan,
+      false
     );
+    this.setState(newState);
   };
 
   getSelectedInventory = product => {
@@ -104,7 +106,7 @@ class _Products extends React.Component {
             "1fr 1fr",
             "1fr 1fr",
             "1fr 1fr",
-            "1fr 1fr 1fr"
+            "1fr 1fr"
           ]}
           bg="green.0"
         >
@@ -126,13 +128,16 @@ class _Products extends React.Component {
                     "calc(21.5rem + ((136 * (100vw - 360px)) / 1079))",
                     "calc(19.5rem + ((136 * (100vw - 360px)) / 1079))"
                   ]}
-                  width={["32rem", "40rem", "40rem", "32rem"]}
+                  width={["32rem", "40rem", "40rem", "32rem", "40rem", "50rem"]}
                   justifySelf={justify}
                   key={product.id}
                 >
                   <SubTitle>{product.name}</SubTitle>
                   <Image
-                    img={process.env.REACT_APP_BACKEND + inventory.image}
+                    img={
+                      "https://bromane.com/" +
+                      getSelectedInventory(product).image
+                    }
                   />
                   <S.CardBody alignItems="center">
                     {product.options.length > 1 ? (
