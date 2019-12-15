@@ -76,20 +76,28 @@ const SET_STRIPE_CARD = gql`
   }
 `;
 
-const CONFIRM_ORDER = gql`
-  mutation updateUserSubscription(
-    $planKey: Int!
-    $quantity: Int
-    $token: String!
-    $update: String!
+const PLACE_ORDER = gql`
+  mutation CreateOrder(
+    $addressCity: String!
+    $addressLine1: String!
+    $addressLine2: String
+    $addressState: String!
+    $addressZip: String!
+    $cardToken: String!
+    $addressName: String!
+    $plans: [Int]
   ) {
-    updateUserSubscription(
-      planKey: $planKey
-      quantity: $quantity
-      token: $token
-      update: $update
+    createOrder(
+      cardToken: $cardToken
+      plans: $plans
+      addressCity: $addressCity
+      addressLine1: $addressLine1
+      addressLine2: $addressLine2
+      addressState: $addressState
+      addressZip: $addressZip
+      addressName: $addressName
     ) {
-      user {
+      orderBox {
         id
       }
     }
@@ -106,11 +114,30 @@ const CREATE_EMAIL_SUBSCRIBER = gql`
   }
 `;
 
+const GET_STRIPE_TOKEN = gql`
+  mutation StripeCard(
+    $cvc: String!
+    $expMonth: String!
+    $expYear: String!
+    $number: String!
+  ) {
+    getStripeToken(
+      cvc: $cvc
+      expMonth: $expMonth
+      expYear: $expYear
+      number: $number
+    ) {
+      cardToken
+    }
+  }
+`;
+
 export {
   CREATE_ACCOUNT,
   USER,
   UPDATE_USER,
   SET_STRIPE_CARD,
-  CONFIRM_ORDER,
+  PLACE_ORDER,
+  GET_STRIPE_TOKEN,
   CREATE_EMAIL_SUBSCRIBER
 };
