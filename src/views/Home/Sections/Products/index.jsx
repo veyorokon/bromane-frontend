@@ -76,7 +76,7 @@ class _Products extends React.Component {
   getSelectedInventory = product => {
     if (this.state.selection && this.state.selection[product.id])
       return this.state.selection[product.id].selected;
-    return product.inventory[0];
+    return product.inventory[product.inventory.length - 1];
   };
 
   render() {
@@ -140,7 +140,7 @@ class _Products extends React.Component {
                     }
                   />
                   <S.CardBody alignItems="center">
-                    {product.options.length > 1 ? (
+                    {product.options.reverse().length > 1 ? (
                       <SimpleDropdown
                         product={product}
                         type={inventory.descriptionType}

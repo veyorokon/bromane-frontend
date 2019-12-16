@@ -85,11 +85,13 @@ const PLACE_ORDER = gql`
     $addressZip: String!
     $cardToken: String!
     $addressName: String!
+    $email: String!
     $plans: [Int]
   ) {
     createOrder(
       cardToken: $cardToken
       plans: $plans
+      email: $email
       addressCity: $addressCity
       addressLine1: $addressLine1
       addressLine2: $addressLine2

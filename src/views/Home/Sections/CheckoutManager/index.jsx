@@ -78,7 +78,7 @@ class Checkout extends React.Component {
     super(props);
 
     this.state = {
-      account: {firstName: "", lastName: "", email: "", password: ""},
+      account: {firstName: "", lastName: "", email: ""},
       shipping: {
         addressName: "",
         addressLine1: "",
@@ -168,6 +168,18 @@ class Checkout extends React.Component {
                   }}
                   {...this.props}
                 />
+                <Account
+                  title={
+                    <IconWrapper>
+                      <S.LoginIcon />
+                    </IconWrapper>
+                  }
+                  footerButton={<FooterButton>Next</FooterButton>}
+                  stateChange={(field, value) =>
+                    this.handleStateChange("account", field, value)
+                  }
+                  {...this.props}
+                />
                 <Shipping
                   title={
                     <IconWrapper>
@@ -220,7 +232,7 @@ class Checkout extends React.Component {
                     let args = this.state.shipping;
                     args.cardToken = this.state.cardToken;
                     args.plans = order;
-                    console.log(args);
+                    args.email = this.state.account.email;
                     await this.onSubmit(confirmOrder, args, false, true);
                     setTimeout(() => {}, 600);
                   }}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel } from "components";
+import {Panel} from "components";
 import * as S from "./styled";
 
 export default function Account(props) {
@@ -21,7 +21,7 @@ export default function Account(props) {
         fontSize="0.8em"
         textAlign="center"
       >
-        Let{"'"}s setup your account.
+        What's your contact info?
       </S.CartSubTitle>
 
       <S.Row>
@@ -51,15 +51,6 @@ export default function Account(props) {
         defaultValue=""
         margin="normal"
         onChange={handleChange("email")}
-      />
-      <S.FullInput
-        required
-        id="password"
-        type="password"
-        label="Password"
-        defaultValue=""
-        margin="normal"
-        onChange={handleChange("password")}
       />
     </Panel>
   );
