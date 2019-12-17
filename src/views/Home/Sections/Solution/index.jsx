@@ -15,10 +15,31 @@ import mobileAfter from "assets/img/guy-after-mobile-compressed.jpeg";
 
 import desktopBefore from "assets/img/guy-before-desktop-compressed.jpeg";
 import desktopAfter from "assets/img/guy-after-desktop-compressed.jpeg";
+import animateScrollTo from "animated-scroll-to";
 
 import * as S from "./styled";
 
-// -> /video/bromane-video.mp4
+export const scrollElementIntoView = (
+  element: HTMLElement,
+  behavior?: "smooth" | "instant" | "auto"
+) => {
+  let scrollTop = window.pageYOffset || element.scrollTop;
+
+  // Furthermore, if you have for example a header outside the iframe
+  // you need to factor in its dimensions when calculating the position to scroll to
+  const headerOutsideIframe = window.parent.document.getElementsByClassName(
+    "myHeader"
+  )[0].clientHeight;
+
+  const finalOffset =
+    element.getBoundingClientRect().top + scrollTop + headerOutsideIframe;
+
+  window.parent.scrollTo({
+    top: finalOffset,
+    behavior: behavior || "auto"
+  });
+};
+
 class Solution extends React.Component {
   render() {
     const videoOptions = {
@@ -88,11 +109,7 @@ class Solution extends React.Component {
           your hair to give your glorious mane the density it deserves. Applying
           it is instant and the results look natural.
           <CallToAction
-            onClick={() =>
-              document.getElementById("#products").scrollIntoView({
-                behavior: "smooth"
-              })
-            }
+            onClick={() => animateScrollTo(document.querySelector("#products"))}
             color="black.0"
             bg="yellow.0"
           >
@@ -111,11 +128,7 @@ class Solution extends React.Component {
           excercise. Bromane stays in until you shower and wash with shampoo so
           you can keep your hair and your confidence.
           <CallToAction
-            onClick={() =>
-              document.getElementById("#products").scrollIntoView({
-                behavior: "smooth"
-              })
-            }
+            onClick={() => animateScrollTo(document.querySelector("#products"))}
             color="black.0"
             bg="yellow.0"
           >

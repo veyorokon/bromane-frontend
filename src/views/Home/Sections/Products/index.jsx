@@ -140,7 +140,7 @@ class _Products extends React.Component {
                     }
                   />
                   <S.CardBody alignItems="center">
-                    {product.options.reverse().length > 1 ? (
+                    {product.options.length > 1 ? (
                       <SimpleDropdown
                         product={product}
                         type={inventory.descriptionType}
