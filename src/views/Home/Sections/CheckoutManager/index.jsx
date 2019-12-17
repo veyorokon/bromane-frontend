@@ -19,6 +19,20 @@ import {
 
 import * as S from "./styled";
 
+function gtag_report_conversion(url) {
+  var callback = function() {
+    if (typeof url != "undefined") {
+      window.location = url;
+    }
+  };
+  window.gtag("event", "conversion", {
+    send_to: "AW-962389789/OghFCLnt4rcBEJ3O88oD",
+    transaction_id: "",
+    event_callback: callback
+  });
+  return false;
+}
+
 function clearToken() {
   localStorage.removeItem("sessionToken");
 }
@@ -235,6 +249,14 @@ class Checkout extends React.Component {
                     args.email = this.state.account.email;
                     await this.onSubmit(confirmOrder, args, false, true);
                     setTimeout(() => {}, 600);
+                    if (typeof window !== "undefined") {
+                      if (window.fbq != null) {
+                        window.fbq("track", "Purchase");
+                      }
+                    }
+                    try {
+                      gtag_report_conversion();
+                    } catch {}
                   }}
                   {...this.props}
                 />
