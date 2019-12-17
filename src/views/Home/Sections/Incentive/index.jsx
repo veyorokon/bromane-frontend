@@ -32,8 +32,7 @@ class Incentive extends React.Component {
           p={["1rem 5% 8rem 5%"]}
         >
           <SubTitle id="products" textAlign="center">
-            Starter kits include a precision applicator and a hairline touch-up
-            cloth.
+            Hey Bro, you get free shipping on all your orders.
           </SubTitle>
         </S.TitleWrapper>
       </FlexColumn>

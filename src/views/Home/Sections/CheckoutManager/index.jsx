@@ -256,6 +256,7 @@ class Checkout extends React.Component {
                     }
                     try {
                       gtag_report_conversion();
+                      console.log("Purchase");
                     } catch {}
                   }}
                   {...this.props}

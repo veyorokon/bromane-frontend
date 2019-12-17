@@ -1,5 +1,5 @@
 import React from "react";
-import { FlexColumn, Title, SubTitle } from "components";
+import {FlexColumn, Title, SubTitle} from "components";
 import productImg from "assets/img/guy-looking-up-compressed.jpeg";
 import * as S from "./styled";
 
@@ -17,6 +17,7 @@ class Problem extends React.Component {
         pt="6%"
         minHeight={["fit-content"]}
         bg={"green.1"}
+        id="learnMore"
       >
         <S.TitleWrapper
           color="black.0"

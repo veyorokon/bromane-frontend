@@ -7,7 +7,7 @@ import {
   CallToAction,
   Title
 } from "components";
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import ReactCompareImage from "react-compare-image";
 
 import mobileBefore from "assets/img/guy-before-mobile-compressed.jpeg";
@@ -15,8 +15,6 @@ import mobileAfter from "assets/img/guy-after-mobile-compressed.jpeg";
 
 import desktopBefore from "assets/img/guy-before-desktop-compressed.jpeg";
 import desktopAfter from "assets/img/guy-after-desktop-compressed.jpeg";
-
-import animateScrollTo from "animated-scroll-to";
 
 import * as S from "./styled";
 
@@ -49,7 +47,7 @@ class Solution extends React.Component {
     );
     const mobileMedia = (
       <S.BeforeAfterWrapper
-        style={{ zIndex: 4, height: "fit-content", userSelect: "none" }}
+        style={{zIndex: 4, height: "fit-content", userSelect: "none"}}
       >
         <ReactCompareImage leftImage={mobileBefore} rightImage={mobileAfter} />
       </S.BeforeAfterWrapper>
@@ -90,7 +88,11 @@ class Solution extends React.Component {
           your hair to give your glorious mane the density it deserves. Applying
           it is instant and the results look natural.
           <CallToAction
-            onClick={() => animateScrollTo(document.querySelector("#products"))}
+            onClick={() =>
+              document.getElementById("#products").scrollIntoView({
+                behavior: "smooth"
+              })
+            }
             color="black.0"
             bg="yellow.0"
           >
@@ -109,7 +111,11 @@ class Solution extends React.Component {
           excercise. Bromane stays in until you shower and wash with shampoo so
           you can keep your hair and your confidence.
           <CallToAction
-            onClick={() => animateScrollTo(document.querySelector("#products"))}
+            onClick={() =>
+              document.getElementById("#products").scrollIntoView({
+                behavior: "smooth"
+              })
+            }
             color="black.0"
             bg="yellow.0"
           >
