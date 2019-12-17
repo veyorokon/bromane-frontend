@@ -32,7 +32,7 @@ class Incentive extends React.Component {
           p={["1rem 5% 8rem 5%"]}
         >
           <SubTitle id="products" textAlign="center">
-            Hey Bro, you get free shipping on all your orders.
+            Hey bro, you get free shipping on all your orders.
           </SubTitle>
         </S.TitleWrapper>
       </FlexColumn>
