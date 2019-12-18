@@ -19,6 +19,9 @@ import {Box, Drawer} from "components";
 import styled from "styled-components";
 import {position} from "styled-system";
 import updateState from "lib/updateState";
+import ReactDOM from "react-dom";
+import animateScrollTo from "animated-scroll-to";
+
 /* l
 ==============================================
                     VIEW
@@ -43,6 +46,18 @@ class _HomeContent extends React.Component {
       isComplete: false,
       isComingSoon: false
     };
+  }
+
+  componentDidMount() {
+    const anchor = this.props.location.hash.toLowerCase();
+    if (anchor) {
+      let elem = document.querySelector(anchor);
+      if (elem) {
+        setTimeout(function() {
+          animateScrollTo(elem);
+        }, 500);
+      }
+    }
   }
 
   toggleDrawer = event => {

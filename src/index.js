@@ -1,17 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, withRouter } from "react-router-dom";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import { createMuiTheme } from "@material-ui/core/styles";
+import {createBrowserHistory} from "history";
+import {Router, Route, withRouter} from "react-router-dom";
+import styled, {ThemeProvider, createGlobalStyle} from "styled-components";
+import {createMuiTheme} from "@material-ui/core/styles";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
-import { StripeProvider } from "react-stripe-elements";
+import {StripeProvider} from "react-stripe-elements";
 import theme from "assets/theme";
 import Home from "layouts/Home.jsx";
 
 import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import {ApolloProvider} from "react-apollo";
 import * as fonts from "assets/fonts";
+import {HashLink as Link} from "react-router-hash-link";
 
 const hist = createBrowserHistory();
 const apiUrl = process.env.REACT_APP_BACKEND_API;

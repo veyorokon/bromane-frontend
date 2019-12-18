@@ -95,6 +95,7 @@ class Solution extends React.Component {
         height={["fit-content"]}
         minHeight={["fit-content"]}
         padding={["0", "0", "0", "0  0 0% 0"]} //0 0 8% 0
+        id="how"
       >
         <S.TitleWrapper
           color="black.0"
