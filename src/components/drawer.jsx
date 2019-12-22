@@ -1,8 +1,7 @@
 import React from "react";
-import styled, { css } from "styled-components";
-import { ArrowRightCircle } from "styled-icons/feather/ArrowRightCircle";
-import { system, display, width } from "styled-system";
-import { Drawer as MUIDrawer } from "@material-ui/core";
+import styled, {css} from "styled-components";
+import {ArrowRightCircle} from "styled-icons/feather/ArrowRightCircle";
+import {system, display, width} from "styled-system";
 
 const StyledDrawer = styled.div`
   height: 100%;
@@ -116,7 +115,7 @@ class Drawer extends React.Component {
   }
 
   render() {
-    const { content, title } = this.props;
+    const {content, title} = this.props;
     return (
       <React.Fragment>
         <Overlay
@@ -148,4 +147,4 @@ class Drawer extends React.Component {
   }
 }
 
-export { Drawer };
+export {Drawer};

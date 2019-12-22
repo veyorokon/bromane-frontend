@@ -19,7 +19,6 @@ import {Box, Drawer} from "components";
 import styled from "styled-components";
 import {position} from "styled-system";
 import updateState from "lib/updateState";
-import ReactDOM from "react-dom";
 import animateScrollTo from "animated-scroll-to";
 
 /* l
@@ -165,6 +164,8 @@ class _HomeContent extends React.Component {
     this.setState({isComplete: true, cart: {}});
   };
 
+  handleToggleOpen = () => {};
+
   render() {
     const logoLeft = this.state.open ? "0" : "50%";
     const overlayEffect = this.state.open
@@ -200,6 +201,7 @@ class _HomeContent extends React.Component {
         <footer>
           <Footer />
         </footer>
+
         <Drawer
           style={{
             overflowY: "auto",

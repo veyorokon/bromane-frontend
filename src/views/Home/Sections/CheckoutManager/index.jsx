@@ -159,109 +159,126 @@ class Checkout extends React.Component {
       );
     const order = getOrderList();
     return (
-      <Mutation mutation={GET_STRIPE_TOKEN}>
-        {getToken => (
-          <Mutation mutation={PLACE_ORDER}>
-            {confirmOrder => (
-              <Tabs selected={0}>
-                <Overview
-                  showItemRemove
-                  onItemRemove={onItemRemove}
-                  title={
-                    <IconWrapper>
-                      <S.ShoppingCartIcon />
-                    </IconWrapper>
-                  }
-                  footerButton={<FooterButton>Continue</FooterButton>}
-                  callback={() => {
-                    if (typeof window !== "undefined") {
-                      if (window.fbq != null) {
-                        window.fbq("track", "InitiateCheckout");
+      <Mutation mutation={CREATE_EMAIL_SUBSCRIBER}>
+        {createEmailSubscriber => (
+          <Mutation mutation={GET_STRIPE_TOKEN}>
+            {getToken => (
+              <Mutation mutation={PLACE_ORDER}>
+                {confirmOrder => (
+                  <Tabs selected={0}>
+                    <Overview
+                      showItemRemove
+                      onItemRemove={onItemRemove}
+                      title={
+                        <IconWrapper>
+                          <S.ShoppingCartIcon />
+                        </IconWrapper>
                       }
-                    }
-                  }}
-                  {...this.props}
-                />
-                <Account
-                  title={
-                    <IconWrapper>
-                      <S.LoginIcon />
-                    </IconWrapper>
-                  }
-                  footerButton={<FooterButton>Next</FooterButton>}
-                  stateChange={(field, value) =>
-                    this.handleStateChange("account", field, value)
-                  }
-                  {...this.props}
-                />
-                <Shipping
-                  title={
-                    <IconWrapper>
-                      <S.LocalShippingIcon />
-                    </IconWrapper>
-                  }
-                  footerButton={<FooterButton>Next</FooterButton>}
-                  stateChange={(field, value) =>
-                    this.handleStateChange("shipping", field, value)
-                  }
-                  {...this.props}
-                />
-                <Payment
-                  title={
-                    <IconWrapper>
-                      <S.CreditCardIcon />
-                    </IconWrapper>
-                  }
-                  footerButton={<FooterButton>Continue</FooterButton>}
-                  callback={async () => {
-                    if (typeof window !== "undefined") {
-                      if (window.fbq != null) {
-                        window.fbq("track", "AddPaymentInfo");
+                      footerButton={<FooterButton>Continue</FooterButton>}
+                      callback={() => {
+                        if (typeof window !== "undefined") {
+                          if (window.fbq != null) {
+                            window.fbq("track", "InitiateCheckout");
+                          }
+                        }
+                      }}
+                      {...this.props}
+                    />
+                    <Account
+                      title={
+                        <IconWrapper>
+                          <S.LoginIcon />
+                        </IconWrapper>
                       }
-                    }
-                    const data = await this.onSubmit(
-                      getToken,
-                      this.state.payment,
-                      true
-                    );
-                    console.log(data);
-                    const token = data.data.getStripeToken.cardToken;
-                    this.setState({cardToken: token});
-                  }}
-                  stateChange={(field, value) =>
-                    this.handleStateChange("payment", field, value)
-                  }
-                  {...this.props}
-                />
-                <Confirmation
-                  overrideDefault
-                  title={
-                    <IconWrapper>
-                      <S.ConfirmIcon />
-                    </IconWrapper>
-                  }
-                  shipping={shipping}
-                  footerButton={<FooterButton>Place Order</FooterButton>}
-                  callback={async () => {
-                    let args = this.state.shipping;
-                    args.cardToken = this.state.cardToken;
-                    args.plans = order;
-                    args.email = this.state.account.email;
-                    await this.onSubmit(confirmOrder, args, false, true);
-                    setTimeout(() => {}, 600);
-                    if (typeof window !== "undefined") {
-                      if (window.fbq != null) {
-                        window.fbq("track", "Purchase");
+                      footerButton={<FooterButton>Next</FooterButton>}
+                      stateChange={(field, value) =>
+                        this.handleStateChange("account", field, value)
                       }
-                    }
-                    try {
-                      gtag_report_conversion();
-                      console.log("Purchase");
-                    } catch {}
-                  }}
-                  {...this.props}
-                />
-              </Tabs>
+                      callback={async () => {
+                        await this.onSubmit(createEmailSubscriber, {
+                          email: this.state.account.email
+                        });
+                        setTimeout(() => {}, 600);
+                        if (typeof window !== "undefined") {
+                          if (window.fbq != null) {
+                            window.fbq("track", "CreateAccount", {
+                              email: this.state.account.email
+                            });
+                          }
+                        }
+                      }}
+                      {...this.props}
+                    />
+                    <Shipping
+                      title={
+                        <IconWrapper>
+                          <S.LocalShippingIcon />
+                        </IconWrapper>
+                      }
+                      footerButton={<FooterButton>Next</FooterButton>}
+                      stateChange={(field, value) =>
+                        this.handleStateChange("shipping", field, value)
+                      }
+                      {...this.props}
+                    />
+                    <Payment
+                      title={
+                        <IconWrapper>
+                          <S.CreditCardIcon />
+                        </IconWrapper>
+                      }
+                      footerButton={<FooterButton>Continue</FooterButton>}
+                      callback={async () => {
+                        if (typeof window !== "undefined") {
+                          if (window.fbq != null) {
+                            window.fbq("track", "AddPaymentInfo");
+                          }
+                        }
+                        const data = await this.onSubmit(
+                          getToken,
+                          this.state.payment,
+                          true
+                        );
+                        console.log(data);
+                        const token = data.data.getStripeToken.cardToken;
+                        this.setState({cardToken: token});
+                      }}
+                      stateChange={(field, value) =>
+                        this.handleStateChange("payment", field, value)
+                      }
+                      {...this.props}
+                    />
+                    <Confirmation
+                      overrideDefault
+                      title={
+                        <IconWrapper>
+                          <S.ConfirmIcon />
+                        </IconWrapper>
+                      }
+                      shipping={shipping}
+                      footerButton={<FooterButton>Place Order</FooterButton>}
+                      callback={async () => {
+                        let args = this.state.shipping;
+                        args.cardToken = this.state.cardToken;
+                        args.plans = order;
+                        args.email = this.state.account.email;
+                        await this.onSubmit(confirmOrder, args, false, true);
+                        setTimeout(() => {}, 600);
+                        if (typeof window !== "undefined") {
+                          if (window.fbq != null) {
+                            window.fbq("track", "Purchase");
+                          }
+                        }
+                        try {
+                          gtag_report_conversion();
+                          console.log("Purchase");
+                        } catch {}
+                      }}
+                      {...this.props}
+                    />
+                  </Tabs>
+                )}
+              </Mutation>
             )}
           </Mutation>
         )}
