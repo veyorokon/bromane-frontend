@@ -102,7 +102,8 @@ class Checkout extends React.Component {
         addressState: ""
       },
       payment: {number: "", expMonth: 0, expYear: 0, cvc: ""},
-      cardToken: ""
+      cardToken: "",
+      maxIndex: 1
     };
   }
 
@@ -158,6 +159,7 @@ class Checkout extends React.Component {
         />
       );
     const order = getOrderList();
+    const {maxIndex} = this.state;
     return (
       <Mutation mutation={CREATE_EMAIL_SUBSCRIBER}>
         {createEmailSubscriber => (
@@ -165,7 +167,7 @@ class Checkout extends React.Component {
             {getToken => (
               <Mutation mutation={PLACE_ORDER}>
                 {confirmOrder => (
-                  <Tabs selected={0}>
+                  <Tabs maxIndex={maxIndex} selected={0}>
                     <Overview
                       showItemRemove
                       onItemRemove={onItemRemove}
@@ -181,6 +183,8 @@ class Checkout extends React.Component {
                             window.fbq("track", "InitiateCheckout");
                           }
                         }
+                        let newMax = Math.min(maxIndex + 1, 1);
+                        this.setState({maxIndex: newMax});
                       }}
                       {...this.props}
                     />
@@ -206,6 +210,8 @@ class Checkout extends React.Component {
                             });
                           }
                         }
+                        let newMax = Math.min(maxIndex + 1, 2);
+                        this.setState({maxIndex: newMax});
                       }}
                       {...this.props}
                     />
@@ -219,6 +225,10 @@ class Checkout extends React.Component {
                       stateChange={(field, value) =>
                         this.handleStateChange("shipping", field, value)
                       }
+                      callback={() => {
+                        let newMax = Math.min(maxIndex + 1, 3);
+                        this.setState({maxIndex: newMax});
+                      }}
                       {...this.props}
                     />
                     <Payment
@@ -234,14 +244,19 @@ class Checkout extends React.Component {
                             window.fbq("track", "AddPaymentInfo");
                           }
                         }
-                        const data = await this.onSubmit(
-                          getToken,
-                          this.state.payment,
-                          true
-                        );
-                        console.log(data);
-                        const token = data.data.getStripeToken.cardToken;
-                        this.setState({cardToken: token});
+                        if (!this.state.token) {
+                          const data = await this.onSubmit(
+                            getToken,
+                            this.state.payment,
+                            true
+                          );
+                          const token = data.data.getStripeToken.cardToken;
+                          let newMax = Math.min(maxIndex + 1, 4);
+                          this.setState({
+                            cardToken: token,
+                            maxIndex: newMax
+                          });
+                        }
                       }}
                       stateChange={(field, value) =>
                         this.handleStateChange("payment", field, value)
