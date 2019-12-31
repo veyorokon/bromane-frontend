@@ -71,6 +71,15 @@ class Tabs extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {maxIndex} = this.props;
+    if (nextProps.maxIndex !== maxIndex) {
+      this.setState({
+        selected: this.state.selected + 1
+      });
+    }
+  }
+
   async handleChange(index, callback) {
     const {maxIndex} = this.props;
     if (index > this.state.selected && callback) await callback();

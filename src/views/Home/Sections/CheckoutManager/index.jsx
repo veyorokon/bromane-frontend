@@ -57,11 +57,12 @@ const IconWrapper = ({children}) => (
   </S.SVGWrapper>
 );
 
-const FooterButton = ({children}) => (
+const FooterButton = ({children}, props) => (
   <S.DrawerButton
     width={["100%", "80%", "80%", "80%", "100%"]}
     color={["white.0"]}
-    background={["nav.0"]}
+    isSubmitting={props.isSubmitting}
+    onClick={props.onClick}
   >
     {children}
   </S.DrawerButton>
@@ -101,9 +102,10 @@ class Checkout extends React.Component {
         addressZip: "",
         addressState: ""
       },
-      payment: {number: "", expMonth: 0, expYear: 0, cvc: ""},
+      payment: {number: "", expMonth: null, expYear: null, cvc: ""},
       cardToken: "",
-      maxIndex: 1
+      maxIndex: 1,
+      isSubmitting: false
     };
   }
 
@@ -120,6 +122,7 @@ class Checkout extends React.Component {
       localStorage.setItem("sessionToken", response.data.createUser.token);
     }
     if (isComplete) {
+      this.setState({isSubmitting: true});
       this.props.onCheckoutComplete();
     }
     return response;
@@ -143,7 +146,7 @@ class Checkout extends React.Component {
     const {isEmpty} = this.props || true;
     const {getOrderList} = this;
     const {onItemRemove, isComingSoon} = this.props;
-    const {shipping} = this.state;
+    const {shipping, account, payment} = this.state;
     if (isComingSoon) {
       return <ComingSoonCart />;
     }
@@ -184,11 +187,13 @@ class Checkout extends React.Component {
                           }
                         }
                         let newMax = Math.min(maxIndex + 1, 1);
-                        this.setState({maxIndex: newMax});
+                        // this.setState({maxIndex: newMax});
+                        return newMax;
                       }}
                       {...this.props}
                     />
                     <Account
+                      account={account}
                       title={
                         <IconWrapper>
                           <S.LoginIcon />
@@ -221,6 +226,7 @@ class Checkout extends React.Component {
                           <S.LocalShippingIcon />
                         </IconWrapper>
                       }
+                      shipping={shipping}
                       footerButton={<FooterButton>Next</FooterButton>}
                       stateChange={(field, value) =>
                         this.handleStateChange("shipping", field, value)
@@ -228,6 +234,7 @@ class Checkout extends React.Component {
                       callback={() => {
                         let newMax = Math.min(maxIndex + 1, 3);
                         this.setState({maxIndex: newMax});
+                        return newMax;
                       }}
                       {...this.props}
                     />
@@ -237,14 +244,23 @@ class Checkout extends React.Component {
                           <S.CreditCardIcon />
                         </IconWrapper>
                       }
-                      footerButton={<FooterButton>Continue</FooterButton>}
+                      payment={payment}
+                      footerButton={
+                        <FooterButton
+                          onClick={() => {
+                            this.setState({isSubmitting: true});
+                          }}
+                        >
+                          Continue
+                        </FooterButton>
+                      }
                       callback={async () => {
                         if (typeof window !== "undefined") {
                           if (window.fbq != null) {
                             window.fbq("track", "AddPaymentInfo");
                           }
                         }
-                        if (!this.state.token) {
+                        if (!this.state.token && !this.state.isSubmitting) {
                           const data = await this.onSubmit(
                             getToken,
                             this.state.payment,
@@ -271,22 +287,25 @@ class Checkout extends React.Component {
                         </IconWrapper>
                       }
                       shipping={shipping}
-                      footerButton={<FooterButton>Place Order</FooterButton>}
+                      footerButton={
+                        <FooterButton disabled={this.state.isSubmitting}>
+                          Place Order
+                        </FooterButton>
+                      }
                       callback={async () => {
-                        let args = this.state.shipping;
-                        args.cardToken = this.state.cardToken;
-                        args.plans = order;
-                        args.email = this.state.account.email;
-                        await this.onSubmit(confirmOrder, args, false, true);
-                        setTimeout(() => {}, 600);
-                        if (typeof window !== "undefined") {
-                          if (window.fbq != null) {
-                            window.fbq("track", "Purchase");
-                          }
-                        }
                         try {
+                          let args = this.state.shipping;
+                          args.cardToken = this.state.cardToken;
+                          args.plans = order;
+                          args.email = this.state.account.email;
+                          await this.onSubmit(confirmOrder, args, false, true);
+                          setTimeout(() => {}, 600);
+                          if (typeof window !== "undefined") {
+                            if (window.fbq != null) {
+                              window.fbq("track", "Purchase");
+                            }
+                          }
                           gtag_report_conversion();
-                          console.log("Purchase");
                         } catch {}
                       }}
                       {...this.props}

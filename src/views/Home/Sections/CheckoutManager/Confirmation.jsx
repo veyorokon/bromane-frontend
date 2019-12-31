@@ -30,7 +30,7 @@ export default class Confirmation extends React.Component {
     const {props, getOrderTotal} = this;
     const plans = this.planList();
     const total = getOrderTotal().toFixed(2);
-    const shipping = props.shipping;
+    const {shipping} = props;
     return (
       <Panel {...props}>
         <S.CartSubTitle

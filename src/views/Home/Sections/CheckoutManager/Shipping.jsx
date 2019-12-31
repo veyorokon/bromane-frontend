@@ -8,6 +8,7 @@ export default function Shipping(props) {
   const handleChange = name => event => {
     props.stateChange(name, event.target.value);
   };
+  const {shipping} = props;
   return (
     <Panel {...props}>
       <S.CartSubTitle
@@ -23,7 +24,7 @@ export default function Shipping(props) {
           id="addressName"
           type="address"
           label="Name"
-          defaultValue=""
+          defaultValue={shipping.addressName}
           margin="normal"
           onChange={handleChange("addressName")}
         />
@@ -32,7 +33,7 @@ export default function Shipping(props) {
           id="addressLine1"
           type="address"
           label="Address Line 1"
-          defaultValue=""
+          defaultValue={shipping.addressLine1}
           margin="normal"
           onChange={handleChange("addressLine1")}
         />
@@ -41,7 +42,7 @@ export default function Shipping(props) {
           id="addressLine2"
           type="address"
           label="Address Line 2"
-          defaultValue=""
+          defaultValue={shipping.addressLine2}
           margin="normal"
           onChange={handleChange("addressLine2")}
         />
@@ -49,7 +50,7 @@ export default function Shipping(props) {
           required
           id="addressCity"
           label="City"
-          defaultValue=""
+          defaultValue={shipping.addressCity}
           margin="normal"
           onChange={handleChange("addressCity")}
         />
@@ -58,7 +59,7 @@ export default function Shipping(props) {
             required
             id="addressState"
             label="State"
-            defaultValue=""
+            defaultValue={shipping.addressState}
             margin="normal"
             value={states.abbreviation}
             onChange={handleChange("addressState")}
@@ -74,7 +75,7 @@ export default function Shipping(props) {
             required
             id="addressZip"
             label="Zip"
-            defaultValue=""
+            defaultValue={shipping.addressZip}
             margin="normal"
             onChange={handleChange("addressZip")}
           />

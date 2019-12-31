@@ -1,23 +1,16 @@
 import styled from "styled-components";
 import React from "react";
-import {
-  system,
-  color,
-  width,
-  margin,
-  alignSelf,
-  maxWidth
-} from "styled-system";
+import {system, color, width, margin, alignSelf, maxWidth} from "styled-system";
 
-import { AnimatedText, SubTitle, Box, Flex } from "components";
+import {AnimatedText, SubTitle, Box, Flex} from "components";
 
-import { FormControl, TextField } from "@material-ui/core";
+import {FormControl, TextField} from "@material-ui/core";
 
-import { CartAlt as ShoppingCart } from "styled-icons/boxicons-solid/CartAlt";
-import { LogInCircle } from "styled-icons/boxicons-regular/LogInCircle";
-import { LocalShipping } from "styled-icons/material/LocalShipping";
-import { CreditCard } from "styled-icons/icomoon/CreditCard";
-import { Cred } from "styled-icons/crypto/Cred";
+import {CartAlt as ShoppingCart} from "styled-icons/boxicons-solid/CartAlt";
+import {LogInCircle} from "styled-icons/boxicons-regular/LogInCircle";
+import {LocalShipping} from "styled-icons/material/LocalShipping";
+import {CreditCard} from "styled-icons/icomoon/CreditCard";
+import {Cred} from "styled-icons/crypto/Cred";
 
 const ShoppingCartIcon = styled(ShoppingCart)``;
 const LoginIcon = styled(LogInCircle)``;
@@ -43,12 +36,7 @@ const DrawerButton = styled(AnimatedText)`
   ${width}
   height: 60px;
   cursor: pointer;
-  ${system({
-    background: {
-      property: "backgroundColor",
-      scale: "colors"
-    }
-  })}
+   background: ${props => (props.isSubmitting ? "black" : "#1d3448")}
   color: white;
   font-size: 2rem;
   display: flex;
@@ -57,12 +45,7 @@ const DrawerButton = styled(AnimatedText)`
   margin: 3rem auto 1rem auto;
   transition: all 0.8s;
   outline: none;
-  ${system({
-    background: {
-      property: "backgroundColor",
-      scale: "colors"
-    }
-  })}
+
   &:hover {
     background: black;
   }
@@ -163,7 +146,7 @@ const StripeLink = styled.a`
   }
 `;
 
-const InputField = ({ children }) => (
+const InputField = ({children}) => (
   <_InputField width={["100%", "80%", "80%", "80%", "100%"]}>
     {children}
   </_InputField>

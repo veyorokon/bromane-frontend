@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Panel } from "components";
+import {Box, Panel} from "components";
 import * as S from "./styled";
 
 export default function Payment(props) {
   const handleChange = name => event => {
     props.stateChange(name, event.target.value);
   };
+  const {payment} = props;
   return (
     <Panel {...props}>
       <S.CartSubTitle
@@ -21,7 +22,7 @@ export default function Payment(props) {
             required
             id="number"
             label="Card Number"
-            defaultValue=""
+            defaultValue={payment.number}
             margin="normal"
             onChange={handleChange("number")}
           />
@@ -30,7 +31,7 @@ export default function Payment(props) {
               required
               id="expMonth"
               label="Month"
-              defaultValue=""
+              defaultValue={payment.expMonth}
               margin="normal"
               onChange={handleChange("expMonth")}
             />
@@ -39,7 +40,7 @@ export default function Payment(props) {
               required
               id="expYear"
               label="Year"
-              defaultValue=""
+              defaultValue={payment.expYear}
               margin="normal"
               onChange={handleChange("expYear")}
             />
@@ -47,7 +48,7 @@ export default function Payment(props) {
               required
               id="cvc"
               label="CVC"
-              defaultValue=""
+              defaultValue={payment.cvc}
               margin="normal"
               onChange={handleChange("cvc")}
             />

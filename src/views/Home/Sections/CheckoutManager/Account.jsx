@@ -29,7 +29,7 @@ export default function Account(props) {
           required
           id="firstName"
           label="First Name"
-          defaultValue=""
+          defaultValue={props.account.firstName}
           margin="normal"
           onChange={handleChange("firstName")}
         />
@@ -38,7 +38,7 @@ export default function Account(props) {
           required
           id="lastName"
           label="Last Name"
-          defaultValue=""
+          defaultValue={props.account.lastName}
           margin="normal"
           onChange={handleChange("lastName")}
         />
@@ -48,7 +48,7 @@ export default function Account(props) {
         id="email"
         type="email"
         label="Email"
-        defaultValue=""
+        defaultValue={props.account.email}
         margin="normal"
         onChange={handleChange("email")}
       />
