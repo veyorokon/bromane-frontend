@@ -20,7 +20,7 @@ export default {
     yellow: ["#fdb139"],
     red: "#aa4138",
     maroon: ["#bf503e"],
-    green: ["#f5faf7", "#cadfd0", "#39524c"],
+    green: ["#f5faf7", "#cadfd0", "#C4D3C5", "#39524c"],
     salmon: ["#dfcbca", "#ddb0b0"],
     brown: ["#554740"],
     beige: ["#faf3e1"],

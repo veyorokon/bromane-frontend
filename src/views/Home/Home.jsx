@@ -193,7 +193,7 @@ class _HomeContent extends React.Component {
         />
         <HomeSections position={overlayEffect}>
           <Hero />
-          <Problem />
+          {/*<Problem />*/}
           <Solution />
           <Incentive />
           <Products addCartItem={this.handleAddCartItem} />

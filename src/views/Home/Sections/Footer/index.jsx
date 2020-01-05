@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./styled";
-import { StyledLink } from "components";
+import {StyledLink} from "components";
 
 class Footer extends React.Component {
   render() {
@@ -11,7 +11,7 @@ class Footer extends React.Component {
             <S.FooterCol width="50%">
               <S.FooterHeader>Our mission</S.FooterHeader>
               <S.FooterText textAlign="justify">
-                We want to help bros get their hair back in a way that doesn
+                We want to help men get their hair back in a way that doesn
                 {"'"}t break the bank.
               </S.FooterText>
             </S.FooterCol>
@@ -19,7 +19,13 @@ class Footer extends React.Component {
             <S.FooterCol width="25%">
               <S.FooterHeader>Questions?</S.FooterHeader>
               <S.FooterText textAlign="justify">
-                Send us an email: support@bromane.com
+                Send us an email:{" "}
+                <a
+                  style={{textDecoration: "none", color: "inherit"}}
+                  href="mailto:support@bromane.com?Subject=Refund order"
+                >
+                  support@bromane.com
+                </a>
               </S.FooterText>
             </S.FooterCol>
             <S.FooterCol width="25%">

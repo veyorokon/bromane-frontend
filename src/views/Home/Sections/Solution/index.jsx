@@ -5,7 +5,8 @@ import {
   RightCallOut,
   LeftCallOut,
   CallToAction,
-  Title
+  Title,
+  SubTitle
 } from "components";
 import {withRouter} from "react-router-dom";
 import ReactCompareImage from "react-compare-image";
@@ -101,14 +102,25 @@ class Solution extends React.Component {
           color="black.0"
           textAlign={["center", "center", "center", "left"]}
           alignItems="center"
-          p={"12rem 1rem 12rem 1rem"}
+          p={"5% 10% 5% 10%"}
         >
-          <Title>Your hair is now your choice</Title>
+          <Title textAlign="center">
+            Satisfaction guaranteed or your money back
+          </Title>
+          <SubTitle textAlign="center">
+            Need to contact us for anything? Email us at:{" "}
+            <a
+              style={{textDecoration: "none", color: "purple"}}
+              href="mailto:support@bromane.com?"
+            >
+              support@bromane.com
+            </a>
+          </SubTitle>
         </S.TitleWrapper>
-        <RightCallOut title={"Density"} media={videoMedia}>
-          Bromane's vegetarian fibers have an electrostatic coating and bind to
-          your hair to give your glorious mane the density it deserves. Applying
-          it is instant and the results look natural.
+        <RightCallOut title={"What is it made from?"} media={videoMedia}>
+          Bromane is a natural powdered blend of cotton fibers and minerals.
+          When applied, it clings to thinning hair - adding density. The result
+          looks just like your natural hair.
           <CallToAction
             onClick={() => animateScrollTo(document.querySelector("#products"))}
             color="black.0"
@@ -121,13 +133,13 @@ class Solution extends React.Component {
         </RightCallOut>
 
         <LeftCallOut
-          title={"Natural"}
+          title={"How long will it last?"}
           mobileMedia={mobileMedia}
           desktopMedia={desktopMedia}
         >
-          A natural look that lasts all day - rain or shine and during
-          excercise. Bromane stays in until you shower and wash with shampoo so
-          you can keep your hair and your confidence.
+          One bottle lasts one month and an application lasts all day. It won't
+          sweat out with rigorous exercise and is rain resistant so it won't
+          streak. We designed our formula to wash out with shampoo and water.
           <CallToAction
             onClick={() => animateScrollTo(document.querySelector("#products"))}
             color="black.0"

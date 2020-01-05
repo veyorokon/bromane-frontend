@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {SubTitle, Title, CallToAction, FlexColumn, Text} from "components";
 import * as S from "./styled";
 import {PRODUCTS} from "./graphql";
@@ -96,7 +96,8 @@ class _Products extends React.Component {
           p={"0 1rem 8% 1rem"}
           margin={["-6rem 0 0 0", "auto"]}
         >
-          <Title>What{"'"}s your color?</Title>
+          <Title>Quick shop</Title>
+          <SubTitle>FREE shipping on all U.S. orders</SubTitle>
         </S.TitleWrapper>
         <S.ProductsContainer
           gridTemplateColumns={[
@@ -172,8 +173,8 @@ class _Products extends React.Component {
         </S.ProductsContainer>
         <FlexColumn p="2vw" mt="5%">
           <SubTitle textAlign="center" mt="5%">
-            Hey bro. If you don{"'"}t see your color, check back soon. We{"'"}re
-            always adding more.
+            If you don{"'"}t see your color, check back soon. We{"'"}re always
+            adding more!
           </SubTitle>
         </FlexColumn>
       </FlexColumn>

@@ -2,7 +2,7 @@
 ==============================================
                     IMPORTS
 */
-import { Box, Flex, AnimatedText, Button } from "components";
+import {Box, Flex, AnimatedText, Button} from "components";
 import styled from "styled-components";
 
 import {
@@ -85,9 +85,6 @@ const HeroSubtitle = styled(AnimatedText)`
 `;
 
 const HeroTextBoxWrapper = styled(Flex)`
-  @media only screen and (min-width: 102.4rem) {
-    width: 60%;
-  }
   width: fit-content;
   flex-direction: column;
   height: 100%;

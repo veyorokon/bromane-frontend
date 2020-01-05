@@ -18,8 +18,10 @@ class Incentive extends React.Component {
           p={"4% 1rem 4% 1rem"}
         >
           <Title>Get your starter kit</Title>
-          <SubTitle textAlign="center">
-            A full head of hair from $19.99
+          <SubTitle p={["0 5%", "0 10%"]} textAlign="center">
+            Our starter kits include a one month supply of hair building powder,
+            a precision applicator for better control and a free hairline
+            touchup cloth.
           </SubTitle>
         </S.TitleWrapper>
         <S.ImageWrapper width={["85vw", "85vw", "80vw", "55vw", "40vw"]}>
@@ -31,8 +33,17 @@ class Incentive extends React.Component {
           alignItems="center"
           p={["1rem 5% 8rem 5%"]}
         >
-          <SubTitle id="products" textAlign="center">
-            Hey bro, you get free shipping on all your orders.
+          <SubTitle p={["0 5%", "0 10%"]} id="products" textAlign="center">
+            If you aren't completely satisfied, we'll refund your order - no
+            questions asked. <br />
+            Just email{" "}
+            <a
+              style={{textDecoration: "none", color: "purple"}}
+              href="mailto:support@bromane.com?Subject=Refund order"
+            >
+              support@bromane.com
+            </a>
+            .
           </SubTitle>
         </S.TitleWrapper>
       </FlexColumn>

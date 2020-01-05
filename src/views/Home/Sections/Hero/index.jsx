@@ -3,10 +3,10 @@
                     IMPORTS
 */
 import React from "react";
-import { Text, AnimatedText } from "components";
-import { withRouter } from "react-router-dom";
-import mobileImg from "assets/img/bromane-mobile-compressed.jpeg";
-import desktopImg from "assets/img/bromane-desktop-compressed.jpeg";
+import {Text, AnimatedText} from "components";
+import {withRouter} from "react-router-dom";
+import mobileImg from "assets/img/hero-man-2-mobile.jpeg";
+import desktopImg from "assets/img/hero-man-2-desktop.jpeg";
 import animateScrollTo from "animated-scroll-to";
 
 import * as S from "./styled";
@@ -19,7 +19,7 @@ const RightImage = `url(${desktopImg})`;
                  Components
 */
 
-function HeroTextContent({ color }) {
+function HeroTextContent({color}) {
   return (
     <S.HeroTextBoxWrapper
       justifyContent={["flex-start", "flex-start", "flex-start", "center"]}
@@ -51,7 +51,7 @@ function HeroTextContent({ color }) {
             textAlign={["center", "center", "center", "left"]}
             mb={["7px", "7px", "1.5rem"]}
           >
-            Reclaim your mane.
+            Goodbye thin hair.
           </S.HeroText>
         </AnimatedText>
         <S.HeroSubtitle
@@ -60,31 +60,20 @@ function HeroTextContent({ color }) {
           letterSpacing={["1px"]}
           fontSize={["1.6rem", "1.8rem", "2rem"]}
         >
-          Skip surgery and go straight to hair
+          Add density to thin hair in seconds
           <br />
-          with Bromane instant hair fibers.
+          with Bromane hair powder.
         </S.HeroSubtitle>
         <S.ButtonWrapper
           justifyContent={["center", "center", "center", "left"]}
         >
           <S.SignupButton
-            display={["none", "initial"]}
             color="black.0"
             bg="yellow.0"
             onClick={() => animateScrollTo(document.querySelector("#products"))}
           >
-            <Text pt="5px" fontFamily="porto">
-              get started
-            </Text>
-          </S.SignupButton>
-          <S.SignupButton
-            display={["initial", "none"]}
-            color="black.0"
-            bg="yellow.0"
-            onClick={() => animateScrollTo(document.querySelector("#products"))}
-          >
-            <Text pt="5px" fontFamily="porto">
-              start
+            <Text fontSize={["1.2rem", "1.4rem"]} fontFamily="porto">
+              Try risk free
             </Text>
           </S.SignupButton>
         </S.ButtonWrapper>
@@ -100,7 +89,7 @@ class HeroSection extends React.Component {
         <S.HeroImageBox
           mt={["7rem", "8rem"]}
           backgroundImage={[CenterImage, CenterImage, CenterImage, RightImage]}
-          bg={"purple.0"}
+          bg={"greens.2"}
           justifyContent={["center", "center", "center", "flex-start"]}
         >
           <HeroTextContent />
