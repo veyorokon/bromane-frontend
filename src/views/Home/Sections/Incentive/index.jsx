@@ -35,8 +35,7 @@ class Incentive extends React.Component {
         >
           <SubTitle p={["0 5%", "0 10%"]} id="products" textAlign="center">
             If you aren't completely satisfied, we'll refund your order - no
-            questions asked. <br />
-            Just email{" "}
+            questions asked. Just email{" "}
             <a
               style={{textDecoration: "none", color: "purple"}}
               href="mailto:support@bromane.com?Subject=Refund order"
