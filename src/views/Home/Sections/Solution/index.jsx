@@ -117,10 +117,13 @@ class Solution extends React.Component {
             </a>
           </SubTitle>
         </S.TitleWrapper>
-        <RightCallOut title={"What is it made from?"} media={videoMedia}>
-          Bromane is a natural powdered blend of cotton fibers and minerals.
-          When applied, it clings to thinning hair - adding density. The result
-          looks just like your natural hair.
+        <RightCallOut
+          title={"What are hair building fibers?"}
+          media={videoMedia}
+        >
+          Bromane is a powdered blend of natural cotton fibers and minerals.
+          When applied, the fibers bond to thinning hair and eachother - adding
+          density and rebuilding the look of your natural hair.
           <CallToAction
             onClick={() => animateScrollTo(document.querySelector("#products"))}
             color="black.0"

@@ -62,7 +62,7 @@ function HeroTextContent({color}) {
         >
           Add density to thin hair in seconds
           <br />
-          with Bromane hair powder.
+          with Bromane hair building fibers.
         </S.HeroSubtitle>
         <S.ButtonWrapper
           justifyContent={["center", "center", "center", "left"]}

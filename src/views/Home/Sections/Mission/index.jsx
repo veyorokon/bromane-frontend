@@ -24,9 +24,9 @@ class Mission extends React.Component {
           mt={["3%", "3%", "3%", "8%"]}
         >
           <S.Text>
-            You've probably noticed the signs: thinning hair, a receding
-            hairline or maybe your dad is bald. We know how depressing hair loss
-            can be. But dude. Now you can reclaim your mane.
+            There's a 'wow' moment when our users try Bromane. Sharing that
+            experience is what we love most and why we hope you'll love Bromane
+            as much as we do.
           </S.Text>
         </S.TextWrapper>
         <S.Image
