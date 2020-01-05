@@ -26,6 +26,6 @@ export default function updateState(
   autoAssign = true
 ) {
   let newState = _recUpdateState(state, selector, newval);
-  if (autoAssign) return Object.assign(state, newState);
+  if (autoAssign) return Object.assign({}, state, newState);
   return newState;
 }

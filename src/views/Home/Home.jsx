@@ -129,6 +129,7 @@ class _HomeContent extends React.Component {
     }
     plan.quantity = currentQuantity + 1;
     const newState = updateState(this.state, ["cart", plan.id], plan, false);
+    newState.open = true;
     this.setState(newState);
     if (typeof window !== "undefined") {
       if (window.fbq != null) {
