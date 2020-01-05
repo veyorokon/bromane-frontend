@@ -22,7 +22,7 @@ class Footer extends React.Component {
                 Send us an email:{" "}
                 <a
                   style={{textDecoration: "none", color: "inherit"}}
-                  href="mailto:support@bromane.com?Subject=Refund order"
+                  href="mailto:support@bromane.com"
                 >
                   support@bromane.com
                 </a>

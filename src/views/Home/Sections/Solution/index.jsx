@@ -111,7 +111,7 @@ class Solution extends React.Component {
             Need to contact us for anything? Email us at:{" "}
             <a
               style={{textDecoration: "none", color: "purple"}}
-              href="mailto:support@bromane.com?"
+              href="mailto:support@bromane.com"
             >
               support@bromane.com
             </a>
