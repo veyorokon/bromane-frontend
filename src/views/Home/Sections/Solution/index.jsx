@@ -122,7 +122,7 @@ class Solution extends React.Component {
           media={videoMedia}
         >
           Bromane is a powdered blend of natural cotton fibers and minerals.
-          When applied, the fibers bond to thinning hair and eachother - adding
+          When applied, the fibers bond to thinning hair and each other - adding
           density and rebuilding the look of your natural hair.
           <CallToAction
             onClick={() => animateScrollTo(document.querySelector("#products"))}
