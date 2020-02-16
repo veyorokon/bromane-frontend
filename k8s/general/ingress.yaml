@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: bromane
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    ingress.kubernetes.io/proxy-body-size: 500m
+spec:
+  tls:
+  - hosts:
+    - www.staging.bromane.com
+  rules:
+  - host: www.staging.bromane.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bromane-frontend
+          servicePort: 80

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bromane-frontend
+  namespace: staging
+spec:
+  selector:
+    app: bromane-frontend
+  ports:
+    - name: bromane-frontend-http
+      port: 80
+      targetPort: 80

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bromane-frontend
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bromane-frontend
+  template:
+    metadata:
+      labels:
+        app: bromane-frontend
+    spec:
+      containers:
+        - name: main
+          image: docker-registry.bromane.com/nodejs/bromane_frontend
+          ports:
+          - containerPort: 80

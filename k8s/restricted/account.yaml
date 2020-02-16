@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+    name: ingress-watcher
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: ingress-watcher
+rules:
+  - apiGroups: ["extensions"] # indicates the job API
+    resources: ["ingresses"]  # indicates that this applies to just jobs
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+ name: ingress-watcher
+roleRef:
+ kind: ClusterRole
+ name: ingress-watcher
+ apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    namespace: dashboard
+    name: ingress-watcher
